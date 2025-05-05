@@ -1,0 +1,713 @@
+@charset "UTF-8";
+
+
+.body{
+	background-color: white;
+	font-family: 'Poppins', sans-serif;
+   	text-decoration: none;
+    color: inherit;
+}
+
+
+/* Slider Section */
+.slider-section {
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+    height: 650px; /* Set a fixed height */
+}
+
+.slider-container {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.slider {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+}
+
+.slide.active {
+    opacity: 1;
+}
+
+.slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+
+/* Brand Section */
+.brand-section {
+    margin-top: 80px;
+}
+
+.brand-section h2 {
+    font-size: 40px;
+    font-weight: 500;
+    margin-bottom: 40px;
+    color: #111;
+    margin-left: 80px;
+}
+
+.brand-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 300px);
+    gap: 40px 50px;
+    justify-content: center;
+}
+
+.brand-card {
+    width: 300px;
+    height: 100px;
+    padding: 20px;
+    border: 2px solid #C6C6C6;
+    border-radius: 12px;
+    transition: border-color 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.brand-card img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.brand-card:hover {
+    border-color: #000;
+}
+
+/* Promo Section */
+.promo-section {
+    padding: 80px 30px;
+    text-align: center;
+}
+
+.promo-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 50px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.promo-grid img {
+    width: 100%;
+    height: auto;
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.promo-grid img:hover {
+    transform: scale(1.03);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Shoe Section */
+.shoe-section {
+    margin: 40px 0;
+    padding: 0 80px;
+}
+
+.shoe-section h2 {
+    font-size: 40px;
+    font-weight: 500;
+    margin-bottom: 40px;
+    color: #111;
+}
+
+.shoe-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+}
+
+.shoe-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.shoe-card img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    transition: transform 0.3s ease;
+}
+
+.shoe-card:hover img {
+    transform: translateY(-5px);
+}
+
+.shoe-card h3 {
+    font-size: 20px;
+    font-weight: 500;
+    color: #333;
+}
+
+/* Luka Section */
+.luka-section {
+    margin: 80px 0;
+    padding: 0 80px;
+}
+
+.luka-container {
+    position: relative;
+    width: 100%;
+}
+
+.luka-image {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 8px;
+}
+
+.luka-content {
+    position: absolute;
+    bottom: 40px;
+    left: 40px;
+    color: black;
+    max-width: 500px;
+    text-align: left;
+}
+
+.coming-soon {
+    display: block;
+    font-size: 18px;
+    font-weight: 500;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.luka-title {
+    font-size: 72px;
+    font-weight: 700;
+    margin: 0 0 20px 0;
+    line-height: 1;
+}
+
+.luka-description {
+    font-size: 20px;
+    line-height: 1.4;
+    margin: 0;
+}
+
+/* Icon Sneakers Carousel */
+.icon-sneakers-carousel {
+    margin: 40px auto;
+    padding: 0 20px;
+    max-width: 1400px;
+}
+
+.icon-sneakers-title {
+    font-size: 40px;
+    margin-bottom: 2rem;
+    color: #111;
+    font-weight: 500;
+}
+
+.icon-sneakers-wrapper {
+    width: 100%;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.icon-sneakers-wrapper::-webkit-scrollbar {
+    display: none;
+}
+
+.icon-sneakers-track {
+    display: flex;
+    gap: 20px;
+    padding-bottom: 20px;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    cursor: grab;
+}
+
+.icon-sneakers-track:active {
+    cursor: grabbing;
+}
+
+.icon-sneaker-card {
+    scroll-snap-align: start;
+    min-width: 250px;
+    flex: 0 0 auto;
+    border: 2px solid #e0e0e0;
+    border-radius: 12px;
+    padding: 15px;
+    transition: all 0.3s ease;
+    background: white;
+}
+
+.icon-sneaker-card:hover {
+    border-color: black;
+}
+
+.icon-sneaker-card img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+.icon-sneaker-card h3 {
+    font-size: 20px;
+    font-weight: 500;
+    text-align: center;
+    color: black;
+}
+
+/* Dynamic Image Slider */
+.dynamic-image-slider {
+    width: 100%;
+    height: 280px;
+    position: relative;
+    overflow: hidden;
+    
+    margin-top: 80px;
+}
+
+.dynamic-slider-container {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.dynamic-slider {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.dynamic-slider img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+}
+
+.dynamic-slider img.active {
+    opacity: 1;
+}
+/* Spotlight Section */
+.spotlight-section {
+    padding: 80px 50px;
+    text-align: center;
+}
+
+.spotlight-heading {
+    font-size: 40px;
+    font-weight: 500;
+    margin-bottom: 40px;
+}
+
+.spotlight-images {
+    display: flex;
+    justify-content: center;
+    gap: 80px;
+    flex-wrap: wrap;
+}
+
+.spotlight-images img {
+    max-width: 100%;
+    width: auto;
+    height: 600px;
+    border-radius: 15px;
+}
+
+/* Trending Products */
+.trending-products {
+    margin: 40px auto;
+    padding: 0 20px;
+    max-width: 1400px;
+}
+
+.trending-title {
+    font-size: 40px;
+    font-weight: 500;
+    margin-bottom: 40px;
+    color: black;
+}
+
+.trending-wrapper {
+    width: 100%;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.trending-wrapper::-webkit-scrollbar {
+    display: none;
+}
+
+.trending-track {
+    display: flex;
+    gap: 30px;
+    padding-bottom: 20px;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    cursor: grab;
+}
+
+.trending-track:active {
+    cursor: grabbing;
+}
+
+.trending-card {
+    scroll-snap-align: start;
+    min-width: 280px;
+    flex: 0 0 auto;
+    border: 2px solid #e0e0e0;
+    border-radius: 12px;
+    padding: 20px;
+    transition: all 0.3s ease;
+    background: white;
+    text-align: center;
+}
+
+.trending-card:hover {
+    border-color: black;
+}
+
+.trending-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: contain;
+    margin-bottom: 15px;
+}
+
+.trending-card h3 {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #111;
+}
+
+.product-type {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 8px;
+}
+
+.product-price {
+    font-size: 20px;
+    font-weight: 500;
+    color: #000;
+}
+
+
+/* Responsive Styles */
+@media (max-width: 1400px) {
+    .header-container, 
+    .sub-nav-container,
+    .promo-grid,
+    .shoe-section,
+    .luka-section,
+    .icon-sneakers-carousel,
+    .trending-products,
+    .footer-container {
+        padding-left: 40px;
+        padding-right: 40px;
+    }
+}
+
+@media (max-width: 1200px) {
+    .brand-grid {
+        grid-template-columns: repeat(3, 300px);
+    }
+    
+    .shoe-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    
+    .footer-container {
+        gap: 40px;
+    }
+}
+
+@media (max-width: 1024px) {
+    .header-container {
+        flex-wrap: wrap;
+        height: auto;
+        padding: 15px 30px;
+    }
+    
+    .logo-container {
+        order: 1;
+        padding-right: 0;
+        width: 50%;
+    }
+    
+    .search-container {
+        order: 3;
+        width: 100%;
+        margin: 15px 0;
+    }
+    
+    .nav-links {
+        order: 2;
+        width: 50%;
+        justify-content: flex-end;
+        gap: 20px;
+    }
+    
+    .nav-text {
+        display: none;
+    }
+    
+    .brand-grid {
+        grid-template-columns: repeat(2, 300px);
+    }
+    
+    .shoe-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .luka-content {
+        max-width: 60%;
+    }
+    
+    .luka-title {
+        font-size: 60px;
+    }
+    
+    .footer-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .footer-section {
+        margin-bottom: 30px;
+    }
+}
+
+@media (max-width: 768px) {
+    .header-container, 
+    .sub-nav-container,
+    .promo-grid,
+    .shoe-section,
+    .luka-section,
+    .icon-sneakers-carousel,
+    .trending-products,
+    .footer-container {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+    
+    .sub-nav {
+        height: auto;
+        padding: 15px 0;
+    }
+    
+    .sub-nav-container {
+        flex-wrap: wrap;
+        gap: 10px 15px;
+    }
+    
+    .separator {
+        display: none;
+    }
+    
+    .image-slider {
+        height: 400px;
+    }
+    
+    .brand-section h2 {
+        margin-left: 20px;
+        font-size: 32px;
+    }
+    
+    .brand-grid {
+        gap: 20px;
+    }
+    
+    .promo-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .shoe-section h2 {
+        font-size: 32px;
+    }
+    
+    .luka-content {
+        position: relative;
+        bottom: auto;
+        left: auto;
+        padding: 20px;
+        max-width: 100%;
+        color: black;
+    }
+    
+    .luka-title {
+        font-size: 48px;
+    }
+    
+    .spotlight-section {
+        padding: 40px 20px;
+    }
+    
+    .spotlight-images {
+        gap: 20px;
+    }
+    
+    .spotlight-images img {
+        height: 400px;
+    }
+    
+    .footer-heading {
+        font-size: 24px;
+    }
+    
+    .footer-text, 
+    .footer-link {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 600px) {
+    .logo-container {
+        width: 70%;
+    }
+    
+    .nav-links {
+        width: 30%;
+    }
+    
+    .login-btn span {
+        display: none;
+    }
+    
+    .brand-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .brand-card {
+        width: 100%;
+        max-width: 300px;
+        margin: 0 auto;
+    }
+    
+    .shoe-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .image-slider {
+        height: 300px;
+    }
+    
+    .dynamic-image-slider {
+        height: 200px;
+    }
+    
+    .spotlight-images img {
+        height: 300px;
+    }
+    
+    .footer-container {
+        grid-template-columns: 1fr;
+    }
+    
+    .payment-img {
+        height: 70px;
+    }
+}
+
+@media (max-width: 480px) {
+    .header-container {
+        padding: 10px 15px;
+    }
+    
+    .logo {
+        height: 40px;
+    }
+    
+    .search-bar {
+        height: 40px;
+        font-size: 16px;
+    }
+    
+    .sub-nav-link {
+        font-size: 16px;
+    }
+    
+    .image-slider {
+        height: 250px;
+    }
+    
+    .brand-section h2 {
+        font-size: 28px;
+        margin-bottom: 20px;
+    }
+    
+    .luka-title {
+        font-size: 36px;
+    }
+    
+    .luka-description {
+        font-size: 16px;
+    }
+    
+    .spotlight-heading {
+        font-size: 32px;
+        margin-bottom: 20px;
+    }
+    
+    .spotlight-images img {
+        height: 250px;
+    }
+    
+    .trending-title {
+        font-size: 32px;
+        margin-bottom: 20px;
+    }
+    
+    .footer-container {
+        padding: 0 15px;
+    }
+    
+    .footer-heading {
+        font-size: 20px;
+    }
+    
+    .nepal-button {
+        font-size: 14px;
+        padding: 2px 10px;
+    }
+    
+    .nepal-icon {
+        height: 30px;
+    }
+    
+    .social-icon {
+        width: 40px;
+        height: 40px;
+    }
+}

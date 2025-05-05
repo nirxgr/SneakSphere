@@ -1,0 +1,226 @@
+@charset "UTF-8";
+body{
+    font-family: 'Poppins', sans-serif;;
+    margin: 0;
+    padding: 0;
+} 
+.top-div{
+    background-color: black;
+    color: white;
+    padding: 20px 20px 50px 20px;
+    text-align: center;
+}
+
+.top-div h2 {
+    font-size: 50px;
+    margin-bottom: 0px;
+    font-weight: 500;
+    margin-top: 60px;
+}
+
+.top-div .tagline  {
+    font-size: 25px;
+    margin-top: 0px;
+    font-weight: 300;
+}
+
+.top-div .tagdesc {
+    margin-top: 40px;
+    font-size: 27px;
+    max-width: 1350px;
+    margin-left: auto;
+    margin-right: auto;
+    font-weight: 300;
+    margin-bottom: 44px;
+}
+
+.second-div{
+    display: grid;
+    grid-template-columns: 70% 30%; 
+    width: 100%;
+    margin-top: 85px;
+    
+}
+
+.second-div .left-second{
+    text-align: left;
+    margin-left: 80px;
+    margin-top: 20px;
+    margin-right: 70px;
+
+
+}
+
+.second-div .left-second .titleline{
+  font-size: 32px;
+  margin-bottom: 0px;
+}
+
+.second-div .left-second h2{
+    font-size: 37px;
+    font-weight: 550;
+    margin-top: 0px;
+    margin-bottom: 15px;
+
+  }
+.second-div .left-second .linedesc{
+    font-size: 24px;
+    text-align: justify;
+    letter-spacing: 0.6px;
+    line-height: 1.7;
+    padding-right: 50px;
+    font-weight: 200;
+    margin-top: 0px;
+
+  }
+
+
+.second-div .right-second img{
+    width: 450px;
+    height: auto;
+
+}
+
+.third-div{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-top: 50px;
+    border: 1px solid black;
+    gap: 120px;
+    padding: 70px 0px 70px 0px;
+    overflow: hidden; 
+}
+
+.third-div img{
+    width: 450px;
+    height: 550px;
+    flex-shrink: 0; 
+  
+}
+
+
+.fourth-div{
+    display: grid;
+    grid-template-columns: 50% 50%; 
+    width: 100%;
+    margin-top: 60px;
+    margin-bottom: 40px;
+    
+    
+}
+
+.left-fourth{
+    text-align: left;
+    padding-right: 70px;
+    padding-left: 50px;
+    
+}
+.left-fourth h3{
+    font-size: 35px;
+    font-weight: 500;
+}
+
+.left-fourth p{
+    font-size: 20px;
+    font-weight: 300;
+    text-align: justify;
+    letter-spacing: 1.5px;
+    line-height: 1.9;
+
+}
+
+
+.right-fourth {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0px;
+    place-items: center;
+    text-align: center;
+    padding: 100px 20px;
+    
+}
+
+.right-fourth h3, 
+.right-fourth p {
+    margin: 0;
+    padding: 0px;
+    text-align: center;
+}
+
+.right-fourth h3 {
+    font-size: 40px;
+    grid-column: span 1;
+}
+
+.right-fourth p {
+    font-size: 20px;
+    grid-column: span 1;
+}
+
+.fifth-div{
+    display: grid;
+    grid-template-columns: 40% 60%; 
+    width: 100%;
+    margin-top: 85px;
+    border: 1px solid black;
+    padding-top: 50px;
+    padding-bottom: 50px;
+  
+}
+
+.left-fifth{
+    padding-left: 35px;
+}
+.left-fifth img{
+    width: 750px;
+    height: auto;
+}
+
+.right-fifth{
+    padding-right: 130px;
+}
+.title{
+    font-size: 30px;
+    margin-bottom: 0px;
+}
+.right-fifth h1{
+    font-size: 38px;
+    font-weight: 450;
+    margin-top: 0px;
+    margin-bottom: 0px;
+
+}
+.desc{
+    font-size: 23px;
+    text-align: justify;
+    margin-top: 25px;
+    font-weight: 350;
+    letter-spacing: 0.5px;
+    line-height: 1.7;
+}
+
+.sixth-div{
+    padding: 40px 200px 70px 200px;
+    text-align: center;
+
+}
+
+.sixth-div h2{
+    font-size: 45px;
+    font-weight: 600;
+    margin-bottom: 0px;
+
+}
+.main{
+    font-size: 30px;
+    margin-top: 4px;
+    font-weight: 400;
+}
+.sub{
+    font-size: 22px;
+    letter-spacing: 0.7px;
+    line-height: 2;
+    font-weight: 300;
+
+}
