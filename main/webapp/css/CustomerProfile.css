@@ -126,4 +126,30 @@ input[readonly] {
   color: orange;
 }
 
+.view-order-container {
+  position: relative;
+  margin: 10px 80px;
+  padding: 10px 90px;
+  
+  }
 
+.view-order-btn {
+ background-color: white;
+  border: 1px solid rgb(136, 133, 121) ;
+  padding: 10px 30px;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: Arial, sans-serif;
+}
+
+.view-order-btn:hover {
+  background-color: #f1f1f1;
+}
+.truck-icon {
+  width: 20px;
+  height: 20px;
+}

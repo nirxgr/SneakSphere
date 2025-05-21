@@ -29,14 +29,7 @@
             </div>
 
             <div class="profile-image-section">
-                <c:choose>
-                    <c:when test="${not empty user.userImageURL}">
-                        <img src="${pageContext.request.contextPath}/${user.userImageURL}" alt="Profile Picture" class="profile-image">
-                    </c:when>
-                    <c:otherwise>
-                        <img src="${pageContext.request.contextPath}/resources/images/admin images/profile-admin.jpeg" alt="Default Profile Picture" class="profile-image">
-                    </c:otherwise>
-                </c:choose>
+                        <img src="${pageContext.request.contextPath}/resources/images/user/${user.userImageURL}" alt="Profile Picture" class="profile-image">
             </div>
         </div>
 
@@ -47,7 +40,7 @@
             </div>
         </c:if>
 
-        <form class="edit-profile-form" method="post" action="${pageContext.request.contextPath}/EditCustomerProfileController" enctype="multipart/form-data">
+        <form class="edit-profile-form" method="post" action="${pageContext.request.contextPath}/editCustomerProfileController" enctype="multipart/form-data">
 
             <!-- Hidden fields -->
             <input type="hidden" name="existingImage" value="${user.userImageURL}" />
@@ -91,7 +84,7 @@
             <!-- Action buttons -->
             <div class="form-actions">
                 <button type="submit" class="save-btn">Save</button>
-                <button type="button" class="cancel-btn" onclick="window.location.href='${pageContext.request.contextPath}/CustomerProfileController'">Cancel</button>
+                <button type="button" class="cancel-btn" onclick="window.location.href='${pageContext.request.contextPath}/customerProfileController'">Cancel</button>
             </div>
         </form>
     </div>

@@ -8,13 +8,18 @@ import java.sql.SQLException;
 import com.sneaksphere.model.SneakerModel;
 import com.sneaksphere.config.Dbconfig;
 
+/**
+ * Service class to handle operations related to adding sneakers to the database.
+ */
 public class AddSneakerService {
-	
 	
 	private Connection dbConn;
 
 	/**
 	 * Constructor initializes the database connection.
+	 * 
+	 * @throws SQLException           if a database access error occurs
+	 * @throws ClassNotFoundException if the database driver class is not found
 	 */
 	public AddSneakerService() {
 		try {
@@ -25,11 +30,12 @@ public class AddSneakerService {
 		}
 	}
 	
-	
-	
-	
 	/**
-	 * Adds a new sneaker data in database.
+	 * Adds a new sneaker to the database.
+	 * 
+	 * @param sneakerModel the SneakerModel object containing sneaker details to be added
+	 * @return Boolean     true if the sneaker was added successfully, false if not,
+	 *                     or null if there was a database connection issue or exception
 	 */
 	public Boolean addSneaker(SneakerModel sneakerModel) {
 		if (dbConn == null) {
@@ -43,8 +49,7 @@ public class AddSneakerService {
 		
 		try(PreparedStatement insertStmt = dbConn.prepareStatement(insertQuery)) {
 
-
-			// Insert student details
+			// Insert sneaker details
 			insertStmt.setString(1, sneakerModel.getSneakerName());
 			insertStmt.setFloat(2, sneakerModel.getSneakerSize());
 			insertStmt.setString(3, sneakerModel.getDescription());
@@ -63,5 +68,3 @@ public class AddSneakerService {
 		}
 	}
 }
-
-

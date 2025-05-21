@@ -1,157 +1,144 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
- <meta charset="UTF-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SNEAKSPHERE - Nike Dunk Low Retro Bttys</title>
+    <title>SNEAKSPHERE - ${sneaker.sneakerName}</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/css/individualProductPage.css" />
+    href="${pageContext.request.contextPath}/css/individualProductPage.css" />
 </head>
 <body>
 
 <jsp:include page="header.jsp" />
 
-    <main class="product-container">
-        <div class="product-gallery">
-            <div class="shoe-grid">
-                <img src="${pageContext.request.contextPath}/resources/images/Product Page Image/Nike Dunk Low Retro Bttys.webp" alt="Nike Side View Left"
-                    class="shoe-img">
-                <img src="${pageContext.request.contextPath}/resources/images/Product Page Image/Nike Dunk Low Retro Bttys 2.webp" alt="Nike Side View Right"
-                    class="shoe-img">
-                <img src="${pageContext.request.contextPath}/resources/images/Product Page Image/Nike Dunk Low Retro Bttys 3.webp" alt="Nike Top View"
-                    class="shoe-img">
-                <img src="${pageContext.request.contextPath}/resources/images/Product Page Image/Nike Dunk Low Retro Bttys 4.webp" alt="Nike Sole View"
-                    class="shoe-img">
+<main class="product-container">
+    <div class="product-gallery">
+        <div class="shoe-grid">
+            <!-- Main product image -->
+            <img src="${pageContext.request.contextPath}/resources/images/sneakers/${sneaker.imageUrl}" alt="${sneaker.sneakerName}"
+                class="shoe-img">
+        </div>
+    </div>
+
+    <div class="product-details">
+        <div class="product-badge">Best Seller</div>
+
+        <div class="product-rating">
+            <div class="stars">
+                <img src="${pageContext.request.contextPath}/resources/images/Product Page Image/star.svg" alt="Filled star" class="star-icon">
+                <img src="${pageContext.request.contextPath}/resources/images/Product Page Image/star.svg" alt="Filled star" class="star-icon">
+                <img src="${pageContext.request.contextPath}/resources/images/Product Page Image/star.svg" alt="Filled star" class="star-icon">
+                <img src="${pageContext.request.contextPath}/resources/images/Product Page Image/star.svg" alt="Filled star" class="star-icon">
+                <img src="${pageContext.request.contextPath}/resources/images/Product Page Image/star.svg" alt="Half star" class="star-icon">
             </div>
+            <span class="rating-count">(67)</span>
         </div>
 
-        <div class="product-details">
-            <div class="product-badge">Best Seller</div>
+        <h1 class="product-title">${sneaker.sneakerName}</h1>
+        <p class="product-category">${sneaker.category}</p>
 
-            <div class="product-rating">
-                <div class="stars">
-                    <img src="${pageContext.request.contextPath}/resources/images/Product Page Image/star.svg" alt="Filled star" class="star-icon">
-                    <img src="${pageContext.request.contextPath}/resources/images/Product Page Image/star.svg" alt="Filled star" class="star-icon">
-                    <img src="${pageContext.request.contextPath}/resources/images/Product Page Image/star.svg" alt="Filled star" class="star-icon">
-                    <img src="${pageContext.request.contextPath}/resources/images/Product Page Image/star.svg" alt="Filled star" class="star-icon">
-                    <img src="${pageContext.request.contextPath}/resources/images/Product Page Image/star.svg" alt="Half star" class="star-icon">
-                </div>
-                <span class="rating-count">(67)</span>
-            </div>
+        <div class="product-description">
+            <p>${sneaker.description}</p>
+        </div>
 
-            <h1 class="product-title">Nike Dunk Low Retro Bttys</h1>
-            <p class="product-category">Men's</p>
+        <div class="product-price">Rs. <fmt:formatNumber value="${sneaker.price}" pattern="#,##0"/></div>
+        <div class="section-separator"></div>
 
-            <div class="product-description">
-                <p>The Nike Dunk Low Retro BTTYS (Be True To Your School) pays homage to college basketball heritage
-                    with bold, varsity-inspired colorways. Featuring classic leather construction and low-cut comfort,
-                    it's a timeless silhouette rooted in '80s court style.</p>
-            </div>
+       <div class="option-section">
+    <h3 class="option-title">Available Sizes (UK)</h3>
+    <div class="size-options">
+        <div class="size-row">
+            <c:forEach items="${availableSizes}" var="size">
+                <button class="size-option" data-size="${size}">${size}</button>
+            </c:forEach>
+        </div>
+    </div>
+</div>
 
-            <div class="product-price">Rs. 11,000</div>
-            <div class="section-separator"></div>
+       <div class="button-group">
+    <form action="${pageContext.request.contextPath}/cart" method="post" style="display:inline;">
+        <input type="hidden" name="sneakerID" value="${sneaker.sneakerID}" />
+        <input type="hidden" name="price" value="${sneaker.price}" />
+        <input type="hidden" name="quantity" value="1" />
+        <input type="hidden" name="action" value="add" />
+        
+        <button type="submit" class="add-to-cart">
+            <img src="${pageContext.request.contextPath}/resources/images/Product Page Image/add to cart.svg" 
+                 alt="Add to cart" class="cart-icon" />
+            Add to Cart
+        </button>
+    </form>
+        <form action="${pageContext.request.contextPath}/individualProductPage" method="post" style="display:inline;">
+    <input type="hidden" name="action" value="buyNow">
+    <input type="hidden" name="sneakerID" value="${sneaker.sneakerID}">
+    <input type="hidden" name="id" value="${sneaker.sneakerID}">
+    <input type="hidden" name="quantity" value="1"> <!-- Explicitly set quantity to 1 -->
+    <button type="submit" class="add-to-cart">Buy Now</button>
+</form>
+</div>
+</main>
 
-            <div class="product-options">
-                <div class="option-section">
-                    <h3 class="option-title">Available Color</h3>
-                    <div class="color-options">
-                        <div class="color-option selected">
-                           <img src="${pageContext.request.contextPath}/resources/images/Product Page Image/Nike Dunk Low Retro Bttys.webp" alt="Nike Dunk Low Retro Bttys.webp">
-                           <span class="color-indicator"></span>
-                        </div>
-                        <div class="color-option">
-                            <img src="${pageContext.request.contextPath}/resources/images/Product Page Image/Nike Dunk Low Retro Bttys blue.webp" alt="Nike Dunk Low Retro Bttys blue">
-                        </div>
-                        <div class="color-option">
-                            <img src="${pageContext.request.contextPath}/resources/images/Product Page Image/Nike Dunk Low Retro Bttys green.webp" alt="Nike Dunk Low Retro Bttys green">
-                        </div>
-                        <div class="color-option">
-                            <img src="${pageContext.request.contextPath}/resources/images/Product Page Image/Nike Dunk Low Retro Bttys purple.webp" alt="Nike Dunk Low Retro Bttys purple">
-                        </div>
-                        <div class="color-option">
-                            <img src="${pageContext.request.contextPath}/resources/images/Product Page Image/Nike Dunk Low Retro.webp" alt="Nike Dunk Low Retro">
-                        </div>
+<section class="trending-products">
+    <h2 class="trending-title">You May Also Like</h2>
+    <div class="trending-wrapper">
+        <div class="trending-track">
+            <c:forEach items="${relatedProducts}" var="related">
+                    <div class="trending-card">
+                     <a href="${pageContext.request.contextPath}/individualProductPage?id=${related.sneakerID}" class="trending-card-link">
+                        <img src="${pageContext.request.contextPath}/resources/images/sneakers/${related.imageUrl}" alt="${related.sneakerName}">
+                       </a>
+                        <h3>${related.sneakerName}</h3>
+                        <p class="product-type">${related.category}</p>
+                        <p class="product-price">Rs. <fmt:formatNumber value="${related.price}" pattern="#,##0"/></p>
                     </div>
-                </div>
-
-                <div class="section-separator"></div>
-
-                <div class="option-section">
-                    <h3 class="option-title">Available Sizes (UK)</h3>
-                    <div class="size-options">
-                        <div class="size-row">
-                            <button class="size-option">7.5</button>
-                            <button class="size-option">8</button>
-                            <button class="size-option">8.5</button>
-                            <button class="size-option">9</button>
-                            <button class="size-option">9.5</button>
-                            <button class="size-option">10</button>
-                        </div>
-                        <div class="size-row">
-                            <button class="size-option">11</button>
-                            <button class="size-option">11.5</button>
-                            <button class="size-option">12</button>
-                            <button class="size-option">12.5</button>
-                            <button class="size-option">13</button>
-                            <button class="size-option">14</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <button class="add-to-cart">
-                <img src="${pageContext.request.contextPath}/resources/images/Product Page Image/add to cart.svg" alt="Add to cart" class="cart-icon">
-                Add to Cart
-            </button>
+            </c:forEach>
         </div>
-    </main>
+    </div>
+</section>
 
-    <section class="trending-products">
-        <h2 class="trending-title">You May Also Like</h2>
-        <div class="trending-wrapper">
-            <div class="trending-track">
-                <div class="trending-card">
-                     <img src="${pageContext.request.contextPath}/resources/images/system/RED DUNK.webp" alt="Nike Dunk Low Retro">
-                    <h3>Nike Dunk Low Retro</h3>
-                    <p class="product-type">Sneakers</p>
-                    <p class="product-price">Rs. 16,000</p>
-                </div>
-                <div class="trending-card">
-                    <img src="${pageContext.request.contextPath}/resources/images/system/New Balance 2002R.webp" alt="New Balance 2002R">
-                    <h3>New Balance 2002R</h3>
-                    <p class="product-type">Men (Tan/Brown)</p>
-                    <p class="product-price">Rs. 26,000</p>
-                </div>
-                <div class="trending-card">
-                    <img src="${pageContext.request.contextPath}/resources/images/system/adidas Handball Spezial.webp" alt="adidas Handball Spezial">
-                    <h3>adidas Handball Spezial</h3>
-                    <p class="product-type">Women (Tan/Brown)</p>
-                    <p class="product-price">Rs. 26,000</p>
-                </div>
-                <div class="trending-card">
-                     <img src="${pageContext.request.contextPath}/resources/images/system/Puma MB.04 TMNT.webp" alt="Puma MB.04 TMNT">
-                    <h3>Puma MB.04 TMNT</h3>
-                    <p class="product-type">Men (Fluoro Green)</p>
-                    <p class="product-price">Rs. 39,000</p>
-                </div>
-                <div class="trending-card">
-                    <img src="${pageContext.request.contextPath}/resources/images/system/On Cloudtilt.webp" alt="On Cloudtilt">
-                    <h3>On Cloudtilt</h3>
-                    <p class="product-type">Unisex</p>
-                    <p class="product-price">Rs. 22,000</p>
-                </div>
-                <div class="trending-card">
-                   <img src="${pageContext.request.contextPath}/resources/images/system/Nike Dunk Low Retro.webp" alt="Nike Dunk Low Retro">
-                    <h3>Nike Dunk Low Retro</h3>
-                    <p class="product-type">Unisex</p>
-                    <p class="product-price">Rs. 12,000</p>
-                </div>
-            </div>
-        </div>
-    </section>
-    <jsp:include page="footer.jsp" />
+
+<jsp:include page="footer.jsp" />
+<div id="messagePopup" class="message-popup">
+    <div class="message-content">
+        <span id="messageText"></span>
+        <a href = "${pageContext.request.contextPath}/viewOrderHistory" style="text-decoration: none;color: inherit;"> 
+        <button class="message-ok-btn" onclick="closeMessage()">OK</button>
+        </a>
+    </div>
+</div>
+
+
+<script>
+
+
+//Handle messages from server
+document.addEventListener('DOMContentLoaded', function() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const message = urlParams.get('message');
+    const error = urlParams.get('error');
+
+    if (message === 'order_placed') {
+        document.getElementById('messageText').textContent = "Order placed successfully! Thank you for Shopping with us!!";
+        document.getElementById('messagePopup').style.display = 'flex';
+    } else if (error === 'order_failed') {
+        document.getElementById('messageText').textContent = "Failed to place order. Please try again.";
+        document.getElementById('messagePopup').style.display = 'flex';
+    }
+});
+
+function closeMessage() {
+    document.getElementById('messagePopup').style.display = 'none';
+}
+
+
+</script>
+
+
+
 </body>
 </html>

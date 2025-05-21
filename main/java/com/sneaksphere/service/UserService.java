@@ -1,6 +1,5 @@
 package com.sneaksphere.service;
 
-
 import com.sneaksphere.model.UserModel;
 import com.sneaksphere.config.Dbconfig;
 
@@ -9,22 +8,30 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-
+/**
+ * Service class for handling user-related operations such as
+ * fetching user details, updating user profiles, and validating user input.
+ */
 public class UserService {
-	  private Connection dbConn;
-	  private boolean isConnectionError = false;
+    private Connection dbConn;
+    private boolean isConnectionError = false;
 
-	
-	public UserService() {
-		try {
+    // Constructor: Initializes the DB connection using Dbconfig class
+    public UserService() {
+        try {
             dbConn = Dbconfig.getDbConnection();
         } catch (SQLException | ClassNotFoundException ex) {
-        	System.out.println(" Connection failed:");
+            System.out.println("Connection failed:");
             ex.printStackTrace();
             isConnectionError = true;
         }
-	}
-	 // Get user by Email
+    }
+
+    /**
+     * Fetches a user from the database by their email address.
+     * @param email User's email address
+     * @return UserModel if found, otherwise null
+     */
     public UserModel getUserByEmail(String email) {
         if (isConnectionError) return null;
 
@@ -50,7 +57,11 @@ public class UserService {
         return null;
     }
 
-    // Get user by ID
+    /**
+     * Fetches a user from the database by their unique user ID.
+     * @param userId User's ID
+     * @return UserModel if found, otherwise null
+     */
     public UserModel getUserById(int userId) {
         if (isConnectionError) return null;
 
@@ -69,14 +80,17 @@ public class UserService {
         return null;
     }
 
- // Fetch admin profile by role= 'Admin'
+    /**
+     * Fetches the admin profile from the database (assumes one admin exists).
+     * @return UserModel of admin, or null if not found
+     */
     public UserModel getAdminProfile() {
         String query = "SELECT * FROM user WHERE Role = 'Admin'";
         try (PreparedStatement stmt = dbConn.prepareStatement(query)) {
             ResultSet rs = stmt.executeQuery();
 
             if (rs.next()) {
-            	return extractUserFromResult(rs); //reusing the method 
+                return extractUserFromResult(rs);
             }
 
         } catch (SQLException e) {
@@ -84,8 +98,11 @@ public class UserService {
         }
         return null;
     }
-    
- // Fetch   details of the logged in user
+
+    /**
+     * Fetches any one customer profile (used for display or testing).
+     * @return UserModel of a customer, or null if none found
+     */
     public UserModel getCustomerProfile() {
         String query = "SELECT * FROM user WHERE Role = 'Customer' LIMIT 1";
         try (PreparedStatement stmt = dbConn.prepareStatement(query)) {
@@ -100,7 +117,12 @@ public class UserService {
         }
         return null;
     }
-    
+
+    /**
+     * Helper method to extract user data from a ResultSet object
+     * @param result SQL ResultSet
+     * @return UserModel with values populated
+     */
     private UserModel extractUserFromResult(ResultSet result) throws SQLException {
         UserModel user = new UserModel();
         user.setUserId(result.getInt("UserID"));
@@ -111,27 +133,29 @@ public class UserService {
         user.setPhone(result.getString("UserPhone"));
         user.setAddress(result.getString("UserAddress"));
         user.setRole(result.getString("Role"));
-        user.setUserImageURL(result.getString("UserImageURL")); //added this line to upload img in database 
+        user.setUserImageURL(result.getString("UserImageURL")); // Image URL for profile picture
         return user;
     }
-    
- // Update user profile (used for admin editing)
+
+    /**
+     * Updates an existing user profile (mainly used for admin)
+     * @param user UserModel containing updated details
+     * @return true if update was successful, false otherwise
+     */
     public boolean updateUserProfile(UserModel user) {
-    	
-    	// Validation logic
+
+        // Validate fields before attempting to update
         if (!validateUserProfile(user)) {
             return false;
         }
-        
-    	// Logic to update user in the database
+
         if (isConnectionError) return false;
 
         String query = "UPDATE user SET UserFirstName = ?, UserLastName = ?, UserPhone = ?, UserAddress = ?, UserImageURL = ? WHERE UserID = ?";
-        
+
         try (PreparedStatement stmt = dbConn.prepareStatement(query)) {
             stmt.setString(1, user.getFirstName());
             stmt.setString(2, user.getLastName());
-            //stmt.setString(3, user.getEmail());
             stmt.setString(3, user.getPhone());
             stmt.setString(4, user.getAddress());
             stmt.setString(5, user.getUserImageURL());
@@ -146,33 +170,39 @@ public class UserService {
         }
     }
 
- // Validation for the user profile
+    /**
+     * Validates user profile fields before update (used in updateUserProfile)
+     * @param user UserModel to validate
+     * @return true if valid, false if any validation fails
+     */
     private boolean validateUserProfile(UserModel user) {
-        // Validate first name and last name (they should not be empty)
+        // Check first name and last name
         if (user.getFirstName().isEmpty() || user.getLastName().isEmpty()) {
-            System.out.println(" First name and last name cannot be empty.");
+            System.out.println("First name and last name cannot be empty.");
             return false;
         }
 
-        // Validate phone number (should be 10 digits long)
+        // Phone number must be 10 digits
         if (!isValidPhone(user.getPhone())) {
-            System.out.println(" Invalid phone number. It must be 10 digits.");
+            System.out.println("Invalid phone number. It must be 10 digits.");
             return false;
         }
 
-   
-        // Validate address (it should not be empty)
+        // Address must not be empty
         if (user.getAddress().isEmpty()) {
-            System.out.println(" Address cannot be empty.");
+            System.out.println("Address cannot be empty.");
             return false;
         }
 
         return true;
     }
 
-    // Helper method to validate phone number (only numbers, 10 digits)
+    /**
+     * Validates that a phone number contains exactly 10 digits
+     * @param phone Phone number string
+     * @return true if valid, false otherwise
+     */
     private boolean isValidPhone(String phone) {
         return phone.matches("\\d{10}");
     }
-   
 }

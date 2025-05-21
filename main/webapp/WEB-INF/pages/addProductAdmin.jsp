@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add Product</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css"
     href="${pageContext.request.contextPath}/css/addProductAdmin.css" />
 </head>
@@ -20,12 +20,15 @@
         
         <a href="${pageContext.request.contextPath}/admin/profile">
         <div class="profile">
-            <img src="${pageContext.request.contextPath}/resources/images/admin images/profile-admin.jpeg" alt="Profile Photo" class="profile-photo">
-            <div class="profile-info">
-                <span class="profile-name">John Doe</span>
-                <span class="profile-role">Admin</span>
-            </div>
-        </div>
+   <a href="${pageContext.request.contextPath}/adminProfileController">
+    <img src="${pageContext.request.contextPath}/resources/images/user/${user.userImageURL}" 
+         alt="Profile Photo" class="profile-photo">
+    </a>
+    <div class="profile-info">
+        <span class="profile-name">${user.firstName} ${user.lastName}</span>
+        <span class="profile-role">Admin</span>
+    </div>
+</div>
         </a>
         
         <ul class="nav-links">
@@ -97,44 +100,44 @@
                 <div class="form-row">
                     <div class="form-group">
                         <label for="firstName">Product Name <span class="required">*</span></label>
-                        <input type="text" id="sneakerName" name="sneakerName"required />
+                        <input type="text" id="sneakerName" name="sneakerName" />
                     </div>
                     <div class="form-group">
                         <label for="lastName">Brand Name <span class="required">*</span></label>
-                        <input type="text" id="brand" name="brand"  required/>
+                        <input type="text" id="brand" name="brand" />
                     </div>
                 </div>
                 <div class="form-row-1">
                     <div class="form-group-1">
                         <label for="firstName">Sneaker Size <span class="required">*</span></label>
-                        <input type="text" id="sneakerSize" name="sneakerSize"  required />
+                        <input type="text" id="sneakerSize" name="sneakerSize"   />
                        
                         
                     </div>
                     <div class="form-group-1">
                         <label for="lastName">Category Name <span class="required">*</span></label>
-                        <input type="text" id="category" name="category"  required/>
+                        <input type="text" id="category" name="category"  />
                     </div>
                     <div class="form-group-1">
                         <label for="releaseDate">Release Date<span class="required">*</span></label>
-                        <input type="date" id="releasedDate" name="releasedDate"  required>
+                        <input type="date" id="releasedDate" name="releasedDate"  >
                     </div>
                     <div class="form-group-1">
                         <label for="lastName">Price<span class="required">*</span></label>
-                        <input type="text" id="price" name="price" required />
+                        <input type="text" id="price" name="price"  />
                     </div>
                 </div>
                 <div class="form-row-2">
                     <div class="form-group-2">
                     <label for="description">Description <span class="required">*</span></label>
-                    <textarea id="description" name="description" placeholder="Description of the product....." required></textarea>
+                    <textarea id="description" name="description" placeholder="Description of the product....." ></textarea>
                     </div>
                 </div>
 
                 <div class="form-row-2">
                     <div class="form-group-2">
                         <label for="image">Upload Shoes Image <span class="required">*</span></label> 
-                        <input type="file" id="imageUrl" name="imageUrl" required>
+                        <input type="file" id="imageUrl" name="imageUrl" >
                     </div>
                 </div>
     

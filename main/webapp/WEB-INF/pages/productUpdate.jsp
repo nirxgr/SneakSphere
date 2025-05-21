@@ -20,12 +20,15 @@
         
         <a href="${pageContext.request.contextPath}/admin/profile">
         <div class="profile">
-            <img src="${pageContext.request.contextPath}/resources/images/admin images/profile-admin.jpeg" alt="Profile Photo" class="profile-photo">
-            <div class="profile-info">
-                <span class="profile-name">John Doe</span>
-                <span class="profile-role">Admin</span>
-            </div>
-        </div>
+   <a href="${pageContext.request.contextPath}/adminProfileController">
+    <img src="${pageContext.request.contextPath}/resources/images/user/${user.userImageURL}" 
+         alt="Profile Photo" class="profile-photo">
+    </a>
+    <div class="profile-info">
+        <span class="profile-name">${user.firstName} ${user.lastName}</span>
+        <span class="profile-role">Admin</span>
+    </div>
+</div>
         </a>
         
         <ul class="nav-links">
@@ -94,34 +97,34 @@
 	    <div class="form-row">
 	        <div class="form-group">
 	            <label for="productname">Product Name <span class="required">*</span></label>
-	            <input type="text" id="sneakerName" name="sneakerName" value="${sneaker.sneakerName}" required />
+	            <input type="text" id="sneakerName" name="sneakerName" value="${sneaker.sneakerName}"  />
 	        </div>
 	        <div class="form-group">
 	            <label for="brandname">Brand Name <span class="required">*</span></label>
-	            <input type="text" id="brand" name="brand" value="${sneaker.brand}" required />
+	            <input type="text" id="brand" name="brand" value="${sneaker.brand}"  />
 	        </div>
 	        <div class="form-group">
 	            <label for="availabilitystatus">Availability Status <span class="required">*</span></label>
-	            <input type="text" id="availability" name="availability" value="${sneaker.availabilityStatus}" required />
+	            <input type="text" id="availability" name="availability" value="${sneaker.availabilityStatus}"  />
 	        </div>
 	    </div>
 	
 	    <div class="form-row-1">
 	        <div class="form-group-1">
 	            <label for="size">Sneaker Size <span class="required">*</span></label>
-	            <input type="text" id="sneakerSize" name="sneakerSize" value="${sneaker.sneakerSize}" required />
+	            <input type="text" id="sneakerSize" name="sneakerSize" value="${sneaker.sneakerSize}"  />
 	        </div>
 	        <div class="form-group-1">
 	            <label for="category">Category Name <span class="required">*</span></label>
-	            <input type="text" id="category" name="category" value="${sneaker.category}" required />
+	            <input type="text" id="category" name="category" value="${sneaker.category}"  />
 	        </div>
 	        <div class="form-group-1">
 	            <label for="releaseDate">Release Date<span class="required">*</span></label>
-	            <input type="date" id="releasedDate" name="releasedDate" value="${sneaker.releasedDate}" required />
+	            <input type="date" id="releasedDate" name="releasedDate" value="${sneaker.releasedDate}"  />
 	        </div>
 	        <div class="form-group-1">
 	            <label for="price">Price<span class="required">*</span></label>
-	            <input type="text" id="price" name="price" value="${sneaker.price}" required />
+	            <input type="text" id="price" name="price" value="${sneaker.price}"  />
 	        </div>
 	    </div>
 	
@@ -135,7 +138,7 @@
 	    <div class="form-row-2">
 	        <div class="form-group-2">
 	            <label for="image">Upload Shoes Image <span class="required">*</span></label> 
-	            <input type="file" id="imageUrl" name="imageUrl" required />
+	            <input type="file" id="imageUrl" name="imageUrl"  />
 	        </div>
 	    </div>
 	    

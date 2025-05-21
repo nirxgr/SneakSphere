@@ -2,7 +2,9 @@ package com.sneaksphere.controller;
 
 
 import com.sneaksphere.model.SneakerModel;
+import com.sneaksphere.model.UserModel;
 import com.sneaksphere.service.UpdateSneakerService;
+import com.sneaksphere.service.UserService;
 import com.sneaksphere.util.ImageUtil;
 import com.sneaksphere.util.ValidationUtil;
 
@@ -12,6 +14,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import jakarta.servlet.http.Part;
 
 import java.io.IOException;
@@ -40,6 +43,18 @@ public class UpdateProductController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+    	HttpSession session = request.getSession();
+        String email = (String) session.getAttribute("username");
+        
+        // Get admin user details
+        UserService userService = new UserService();
+        UserModel adminUser = userService.getUserByEmail(email);
+        
+        // Set admin user in request attributes
+        if (adminUser != null) {
+            request.setAttribute("user", adminUser);
+            session.setAttribute("loggedInUser", adminUser);
+        }
     	request.getRequestDispatcher("/WEB-INF/pages/productUpdate.jsp").forward(request, response);
 	
 
@@ -49,7 +64,21 @@ public class UpdateProductController extends HttpServlet {
     // Handle update form submission
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // Get sneakerID from the request (typically passed as a hidden field)
+        
+    	HttpSession session = request.getSession();
+        String email = (String) session.getAttribute("username");
+        
+        // Get admin user details
+        UserService userService = new UserService();
+        UserModel adminUser = userService.getUserByEmail(email);
+        
+        // Set admin user in request attributes
+        if (adminUser != null) {
+        	request.setAttribute("user", adminUser);
+            session.setAttribute("loggedInUser", adminUser);
+        }
+    	
+    	// Get sneakerID from the request (typically passed as a hidden field)
         int sneakerID = Integer.parseInt(request.getParameter("sneakerID"));
         
         // Retrieve form data from request
@@ -66,7 +95,16 @@ public class UpdateProductController extends HttpServlet {
         Part image = request.getPart("imageUrl");
         String imageUrl = imageUtil.getImageNameFromPart(image); // Assuming imageUtil handles file uploads
 
+        
+        
         // Validate the form fields
+
+        if (ValidationUtil.hasEmptyRequiredFields(request, image)) {
+            request.setAttribute("errorMessage", "All fields are required.");
+            request.getRequestDispatcher("/WEB-INF/pages/productUpdate.jsp").forward(request, response);
+            return;
+        }
+
         boolean hasErrors = false;
         StringBuilder errorMessage = new StringBuilder();
 

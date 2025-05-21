@@ -14,34 +14,34 @@ href="${pageContext.request.contextPath}/css/admin Product.css" />
 </head>
 <body>
 
-<!-- Sidebar Navigation -->
-    <div class="sidebar">
-        <div class="logo">
-            <img src="${pageContext.request.contextPath}/resources/images/system/logo.png" alt="SNE KSPHERE Logo" class="logo-image">
-        </div>
-        
-        
-        <a href="${pageContext.request.contextPath}/admin/profile">
-        <div class="profile">
-            <img src="${pageContext.request.contextPath}/resources/images/admin images/profile-admin.jpeg" alt="Profile Photo" class="profile-photo">
-            <div class="profile-info">
-                <span class="profile-name">John Doe</span>
-                <span class="profile-role">Admin</span>
-            </div>
-        </div>
-        </a>
+ <!-- Sidebar Navigation -->
+<div class="sidebar">
+    <div class="logo">
+        <img src="${pageContext.request.contextPath}/resources/images/system/logo.png" alt="SNE KSPHERE Logo" class="logo-image">
+    </div>
+    
+   <div class="profile">
+   <a href="${pageContext.request.contextPath}/adminProfileController">
+    <img src="${pageContext.request.contextPath}/resources/images/user/${user.userImageURL}" 
+         alt="Profile Photo" class="profile-photo">
+    </a>
+    <div class="profile-info">
+        <span class="profile-name">${user.firstName} ${user.lastName}</span>
+        <span class="profile-role">Admin</span>
+    </div>
+</div>
         
         <ul class="nav-links">
             <li>
                 <a href="${pageContext.request.contextPath}/admin">
-                    <img src="${pageContext.request.contextPath}/resources/images/Admin Product Page Image/Admin black dashboard.svg" alt="Dashboard" class="nav-icon">
+                    <img src="${pageContext.request.contextPath}/resources/images/admin images/blackdashboard-icon.svg" alt="Dashboard" class="nav-icon">
                     <span>Dashboard</span>
                 </a>
             </li>
             <li class="active">
-                <a href="${pageContext.request.contextPath}/adminProduct">
-                    <img src="${pageContext.request.contextPath}/resources/images/Admin Product Page Image/Orange product.svg" alt="Products" class="nav-icon">
-                    <span style="color: #F0671E;">Product</span>
+                <a href= "${pageContext.request.contextPath}/adminProduct">
+                    <img src="${pageContext.request.contextPath}/resources/images/admin images/Totalproducts-icon.svg" alt="Products" class="nav-icon">
+                    <span style="color: #F0671E;">Products</span>
                 </a>
             </li>
             <li>
@@ -67,7 +67,9 @@ href="${pageContext.request.contextPath}/css/admin Product.css" />
             </li>
         </ul>
     </div>
-
+    
+    
+    
     <!-- Main Content -->
     <div class="main-content">
 		<c:if test="${not empty successMessage}">

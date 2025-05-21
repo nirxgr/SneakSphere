@@ -35,41 +35,58 @@ public class SignUpService {
 	 * @return Boolean indicating the success of the operation
 	 */
 	public Boolean registerUser(UserModel userModel) {
-		if (dbConn == null) {
-			System.err.println("Database connection is not available.");
-			return null;
-		}
+	    if (dbConn == null) {
+	        System.err.println("Database connection is not available.");
+	        return null;
+	    }
 
-		String checkQuery = "SELECT UserID FROM user WHERE UserEmail = ?";
-		String insertQuery = "INSERT INTO user (UserFirstName, UserLastName, UserEmail,UserPassword, UserPhone , UserID, UserAddress, Role) "
-				+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+	    String checkEmailQuery = "SELECT UserID FROM user WHERE UserEmail = ?";
+	    String checkPhoneQuery = "SELECT UserID FROM user WHERE UserPhone = ?";
+	    String insertQuery = "INSERT INTO user (UserFirstName, UserLastName, UserEmail, UserPassword, UserPhone, UserAddress, Role, UserImageURL) "
+	            + "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
-		try (PreparedStatement checkStmt = dbConn.prepareStatement(checkQuery);
-			 PreparedStatement insertStmt = dbConn.prepareStatement(insertQuery)) {
+	    try (
+	        PreparedStatement checkEmailStmt = dbConn.prepareStatement(checkEmailQuery);
+	        PreparedStatement checkPhoneStmt = dbConn.prepareStatement(checkPhoneQuery);
+	        PreparedStatement insertStmt = dbConn.prepareStatement(insertQuery)
+	    ) {
+	        // Check for existing email
+	        checkEmailStmt.setString(1, userModel.getEmail());
+	        ResultSet emailRs = checkEmailStmt.executeQuery();
+	        if (emailRs.next()) {
+	            System.err.println("Email already exists: " + userModel.getEmail());
+	            return false;
+	        }
 
-			// Check if user already exists by email
-			checkStmt.setString(1, userModel.getEmail());
-			ResultSet rs = checkStmt.executeQuery();
-			if (rs.next()) {
-				System.err.println("User with this email already exists.");
-				return false;
-			}
+	        // Check for existing phone number
+	        checkPhoneStmt.setString(1, userModel.getPhone());
+	        ResultSet phoneRs = checkPhoneStmt.executeQuery();
+	        if (phoneRs.next()) {
+	            System.err.println("Phone number already exists: " + userModel.getPhone());
+	            return false;
+	        }
 
-			insertStmt.setString(1, userModel.getFirstName());
-			insertStmt.setString(2, userModel.getLastName());
-			insertStmt.setString(3, userModel.getEmail());
-			insertStmt.setString(4, userModel.getAddress());
-			insertStmt.setString(5, userModel.getPhone());
-			insertStmt.setInt(6, userModel.getUserID());
-			insertStmt.setString(7, userModel.getPassword());
-			insertStmt.setString(8, "Customer");
+	        // Insert new user
+	        insertStmt.setString(1, userModel.getFirstName());
+	        insertStmt.setString(2, userModel.getLastName());
+	        insertStmt.setString(3, userModel.getEmail());
+	        insertStmt.setString(4, userModel.getPassword());
+	        insertStmt.setString(5, userModel.getPhone());
+	        insertStmt.setString(6, userModel.getAddress());
+	        insertStmt.setString(7, "Customer"); // Make sure Role is correct
+	        insertStmt.setString(8, userModel.getUserImageURL());
 
-			return insertStmt.executeUpdate() > 0;
+	        int rowsAffected = insertStmt.executeUpdate();
+	        System.out.println("Rows affected by insert: " + rowsAffected);
 
-		} catch (SQLException e) {
-			System.err.println("Error during user registration: " + e.getMessage());
-			e.printStackTrace();
-			return null;
-		}
+	        return rowsAffected > 0;
+
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	        return null;
+	    }
 	}
+
+
+
 }

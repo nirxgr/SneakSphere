@@ -167,9 +167,7 @@
                 <c:when test="${not empty products}">
                     <c:forEach var="product" items="${products}">
                         <div class="trending-card">
-                            <a href="${pageContext.request.contextPath}/ProductController?action=view&id=${product.sneakerID}">
-                               <img src="${pageContext.request.contextPath}/resources/images/system/${product.imageUrl}" alt="${sneaker.sneakerName}" />
-                            </a>
+						        <img src="${pageContext.request.contextPath}/resources/images/sneakers/${product.imageUrl}" alt="${product.sneakerName}">           
                             <h3>${product.sneakerName}</h3>
                             <p class="product-type">${product.category}</p>
                             <p class="product-price">Rs. <fmt:formatNumber value="${product.price}" type="number" maxFractionDigits="2"/></p>

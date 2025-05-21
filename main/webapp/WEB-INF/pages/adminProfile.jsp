@@ -22,13 +22,16 @@
             <img src="${pageContext.request.contextPath}/resources/images/system/logo.png" alt="SNE KSPHERE Logo" class="logo-image">
         </div>
         
-        <div class="profile">
-            <img src="${pageContext.request.contextPath}/resources/images/admin images/profile-admin.jpeg" alt="Profile Photo" class="profile-photo">
-            <div class="profile-info">
-                <span class="profile-name">${user != null ? user.firstName : ''} ${user != null ? user.lastName : ''} </span>
-                <span class="profile-role">Admin</span>
-            </div>
-        </div>
+           <div class="profile">
+   <a href="${pageContext.request.contextPath}/adminProfileController">
+    <img src="${pageContext.request.contextPath}/resources/images/user/${user.userImageURL}" 
+         alt="Profile Photo" class="profile-photo">
+    </a>
+    <div class="profile-info">
+        <span class="profile-name">${user.firstName} ${user.lastName}</span>
+        <span class="profile-role">Admin</span>
+    </div>
+</div>
         
         <ul class="nav-links">
             <li class="#">
@@ -75,8 +78,10 @@
 	     <div class="profile-header-row">
 	       <h2>Profile</h2>
 	       	<div class="profile-actions">
-	         <img src="${pageContext.request.contextPath}/resources/images/admin images/profile-admin.jpeg" alt="Profile Picture" class="profile-image">
-	         <a href="${pageContext.request.contextPath}/EditAdminProfileController" class="edit-link"><i class="fas fa-pen"></i> Edit</a>
+	         
+				        <img src="${pageContext.request.contextPath}/resources/images/user/${user.userImageURL}" alt="Profile Photo" class="profile-photo">
+				    
+	         <a href="${pageContext.request.contextPath}/editAdminProfileController" class="edit-link"><i class="fas fa-pen"></i> Edit</a>
 	       </div>
 	     </div>
 	 

@@ -1,13 +1,11 @@
 @charset "UTF-8";
 
-
 body {
   font-family: 'Poppins', sans-serif;
   margin: 0;
   background-color: #f9f9f9;
 }
-
-
+  
 header {
   background-color: white;
   display: flex;
@@ -17,16 +15,10 @@ header {
   border-bottom: 2px solid black;
 }
   
-
-
 .logo-image {
-  height: 40px;  
+  height: 60px;
   object-fit: contain;
-  
 }
-
-
-
 
 .form-container {
   display: flex;
@@ -86,44 +78,65 @@ header {
   padding-bottom: 5px;
   color: black;
 }
+.signup-form .input-group {
+  margin-bottom: 0.8rem;
+}
 
-
-.signup-form input[type="text"],
-.signup-form input[type="tel"],
-.signup-form input[type="email"],
-.signup-form input[type="password"]
- {
-
+.signup-form .input-group input {
   width: 100%;
   padding: 0.75rem;
-  margin-bottom: 0.8rem;
   border: 1px solid #ccc;
   border-radius: 8px;
   font-size: 0.95rem;
   box-sizing: border-box;
 }
 
-.password-hint {
-
-  text-align: center;
-  font-size: 0.80rem;  
-  margin: 0.5rem 0 1rem;
-  font-weight: bold;
+.file-upload-container {
+  border: 1px solid white;
+  border-radius: 8px;
+  padding: 0.75rem;
+  margin-bottom: 0.8rem;
+  background-color: white;
 }
 
+.file-upload-container label {
+  font-weight: 500;
+  display: block;
+  font-size: 0.95rem;
+}
 
+.file-upload-container p {
+  margin: 0.3rem 0 0.7rem;
+  color: grey;
+  font-size: 0.80rem;
+}
+
+.file-upload-container input[type="file"] {
+  width: 100%;
+  padding: 0.4rem;
+  border-radius: 6px;
+  border: 1px solid grey;
+  font-size: 0.9rem;
+  background-color: white;
+}
+
+.password-hint {
+  text-align: center;
+  font-size: 0.80rem;
+  font-weight: bold;
+  margin: 0.5rem 0 1rem;
+}
 
 .terms {
   display: flex;
   align-items: flex-start;
   font-size: 0.80rem;
   margin-bottom: 1rem;
-  gap: 4px; /* spacing between checkbox and text */
+  gap: 4px;
 }
 
 .terms-label {
   color: grey;
-
 }
 
 .terms a {
@@ -144,7 +157,7 @@ header {
   margin-bottom: 0.5rem;
 }
 
-.submit-btn:hover{
+.submit-btn:hover {
   background-color: grey;
   transition: all 0.2s ease;
 }
@@ -154,7 +167,7 @@ header {
   align-items: center;
   justify-content: center;
   gap: 10px;
-  margin: 1px 0 10px 0;
+  margin: 10px 0;
 }
 
 .divider hr {
@@ -164,22 +177,27 @@ header {
   background: black;
 }
 
-.divider .or-text{
+.or-text {
   color: grey;
   font-weight: 500;
 }
 
-.social-icons{
-  font-size: 25px; 
+.social-text {
   display: flex;
-  gap: 25px; /* space between icons */
-  justify-content: center; /* center the icons */
-  align-items: center;
-
-
+  justify-content: center;
+  font-size: 15px;
+  margin-bottom: 0.5rem;
 }
 
-.fa-google{
+.social-icons {
+  font-size: 25px;
+  display: flex;
+  gap: 25px;
+  justify-content: center;
+  align-items: center;
+}
+
+.fa-google {
   background: conic-gradient(from -45deg, #ea4335 110deg, #4285f4 90deg 180deg, #34a853 180deg 270deg, #fbbc05 270deg) 73% 55%/150% 150% no-repeat;
   -webkit-background-clip: text;
   background-clip: text;
@@ -187,24 +205,13 @@ header {
   -webkit-text-fill-color: transparent;
 }
 
-.social-text{
+.bottom-text {
   display: flex;
   justify-content: center;
   font-size: 15px;
-  padding-top: 0.1px;
-  margin: 0.2rem; 
-   
 }
 
-.bottom-text{
-  display: flex;
-  justify-content: center;
-  font-size: 15px;
-
-
-}
-
-.bottom-text a{
+.bottom-text a {
   text-decoration: none;
-  color: #006285 ;
+  color: #006285;
 }

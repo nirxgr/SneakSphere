@@ -54,7 +54,7 @@
                    
                    <c:choose>
 	                   <c:when test="${not empty currentUser}">
-		                   <a href = "${pageContext.request.contextPath}/CustomerProfileController" style="text-decoration: none;"> 
+		                   <a href = "${pageContext.request.contextPath}/customerProfileController" style="text-decoration: none;"> 
 			                   <img src="${pageContext.request.contextPath}/resources/images/system/Profile.svg" alt="Profile Icon" />
 	                    	</a>
 	                    </c:when>

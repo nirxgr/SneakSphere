@@ -34,6 +34,8 @@ public class GetSneakerService {
 
     /**
      * Gets all sneaker data from database.
+     * 
+     * @return List of SneakerModel objects representing all sneakers.
      */
     public List<SneakerModel> getAllSneakers() {
         List<SneakerModel> sneakers = new ArrayList<>();
@@ -68,6 +70,8 @@ public class GetSneakerService {
     /**
      * Gets the top 5 sneakers based on how many times they were purchased.
      * It calculates sales count and revenue.
+     * 
+     * @return List of SneakerModel objects representing top performing sneakers.
      */
     	public List<SneakerModel> getTopPerformingSneakers() {
         List<SneakerModel> topSneakers = new ArrayList<>();
@@ -109,6 +113,7 @@ public class GetSneakerService {
     	/**
          * Gets the top 5 most buying customers.
          * 
+         * @return List of UserModel objects representing top customers by total spent.
          */
     	
     	public List<UserModel> getTopCustomers() {
@@ -142,10 +147,10 @@ public class GetSneakerService {
     	}
     	
     	/**
-         * For statistics
+         * Gets total sales value from all orders.
          * 
+         * @return String representing total sales, or null if connection error occurs.
          */
-    	
     	
     	public String getTotalSales() {
     		if (isConnectionError) { 
@@ -170,6 +175,12 @@ public class GetSneakerService {
 
     	
     	
+    	/**
+         * Gets total number of sneaker products available.
+         * 
+         * @return String representing total number of sneakers, or null if connection error occurs.
+         */
+    	
     	public String getTotalProducts() {
     		if (isConnectionError) {
     			return null;
@@ -192,7 +203,11 @@ public class GetSneakerService {
     	}
     	
     	
-
+    	/**
+         * Gets total number of orders made.
+         * 
+         * @return String representing total orders, or null if connection error occurs.
+         */
     	public String getTotalOrders() {
     		if (isConnectionError) {
     			return null;
@@ -214,7 +229,11 @@ public class GetSneakerService {
     	}
     	
     	
-
+    	/**
+         * Gets total number of customers with role 'Customer'.
+         * 
+         * @return String representing total customers, or null if connection error occurs.
+         */
     	public String getTotalCustomers() {
     		if (isConnectionError) {
     			return null;
@@ -237,6 +256,12 @@ public class GetSneakerService {
     	}
     	
     	
+    	/**
+         * Gets specific sneaker details by sneaker ID.
+         * 
+         * @param sneakerID int sneaker identifier
+         * @return SneakerModel object with sneaker details, or null if not found or connection error.
+         */
     	public SneakerModel getSpecificSneakerInfo(int sneakerID) {
     		if (isConnectionError) {
     			System.out.println("Connection Error!");
@@ -271,6 +296,12 @@ public class GetSneakerService {
     	}
     	
     	
+    	/**
+         * Deletes a sneaker from the database after checking constraints.
+         * 
+         * @param sneakerID int sneaker identifier to be deleted
+         * @return String null if successful deletion; error message otherwise.
+         */
     	public String deleteSneaker(int sneakerID) {
     	    if (isConnectionError)
     	        return "Database connection error.";
@@ -315,7 +346,6 @@ public class GetSneakerService {
     	    }
     	}
 
-    	
     
     
 }

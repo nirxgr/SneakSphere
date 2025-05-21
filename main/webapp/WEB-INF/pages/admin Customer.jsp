@@ -15,42 +15,44 @@
 </head>
 <body>
  <!-- Sidebar Navigation -->
-    <div class="sidebar">
-        <div class="logo">
-           <img src="${pageContext.request.contextPath}/resources/images/system/logo.png" class="logo-image">
-        </div>
-        
-        <div class="profile">
-            <a href="${pageContext.request.contextPath}/admin/profile"><img src="${pageContext.request.contextPath}/resources/images/admin images/profile-admin.jpeg" class="profile-photo">
-            <div class="profile-info">
-                <span class="profile-name">John Doe</span>
-                <span class="profile-role">Admin</span>
-            </div>
-            </a>
-        </div>
+<div class="sidebar">
+    <div class="logo">
+        <img src="${pageContext.request.contextPath}/resources/images/system/logo.png" alt="SNE KSPHERE Logo" class="logo-image">
+    </div>
+    
+   <div class="profile">
+   <a href="${pageContext.request.contextPath}/adminProfileController">
+    <img src="${pageContext.request.contextPath}/resources/images/user/${user.userImageURL}" 
+         alt="Profile Photo" class="profile-photo">
+    </a>
+    <div class="profile-info">
+        <span class="profile-name">${user.firstName} ${user.lastName}</span>
+        <span class="profile-role">Admin</span>
+    </div>
+</div>
         
         <ul class="nav-links">
             <li>
                 <a href="${pageContext.request.contextPath}/admin">
-                    <img src="${pageContext.request.contextPath}/resources/images/Admin Product Page Image/Admin black dashboard.svg" alt="Dashboard" class="nav-icon">
+                    <img src="${pageContext.request.contextPath}/resources/images/admin images/blackdashboard-icon.svg" alt="Dashboard" class="nav-icon">
                     <span>Dashboard</span>
                 </a>
             </li>
             <li>
-                <a href="${pageContext.request.contextPath}/adminProduct">
+                <a href= "${pageContext.request.contextPath}/adminProduct">
                     <img src="${pageContext.request.contextPath}/resources/images/admin images/product-icon.svg" alt="Products" class="nav-icon">
                     <span>Products</span>
                 </a>
             </li>
             <li>
                 <a href="${pageContext.request.contextPath}/adminOrder">
-                    <img src="${pageContext.request.contextPath}/resources/images/admin images/order-icon.svg" class="nav-icon">
+                    <img src="${pageContext.request.contextPath}/resources/images/admin images/order-icon.svg" alt="Orders" class="nav-icon">
                     <span>Orders</span>
                 </a>
             </li>
-            <li class="active">
-                <a href="#">
-                    <img src="${pageContext.request.contextPath}/resources/images/admin images/customer orange.svg" class="nav-icon">
+            <li  class="active">
+                <a href="${pageContext.request.contextPath}/adminCustomer">
+                    <img src="${pageContext.request.contextPath}/resources/images/admin images/TotalCustomer-icon.svg" alt="Customers" class="nav-icon">
                     <span style="color: #F0671E;">Customers</span>
                 </a>
             </li>
@@ -59,12 +61,13 @@
         <ul class="bottom-links">
             <li>
                 <a href = "${pageContext.request.contextPath}/logout" style="text-decoration: none; color: inherit;"> 
-                    <img src="${pageContext.request.contextPath}/resources/images/admin images/logout-icon.svg" class="nav-icon">
+                    <img src="${pageContext.request.contextPath}/resources/images/admin images/logout-icon.svg" alt="LogOut" class="nav-icon">
                     <span>LogOut</span>
                 </a>
             </li>
         </ul>
     </div>
+    
 
     <!-- Main Content -->
     <div class="main-content">
@@ -87,7 +90,7 @@
 				    <c:if test="${not empty customers}">
 					    <c:forEach var="customer" items="${customers}">
 					        <tr>
-					            <td>${customer.userId}</td>
+					            <td>${customer.userID}</td>
 					            <td>${customer.firstName} ${customer.lastName}</td>
 					            <td>${customer.email}</td>
 					            <td>${customer.phone}</td>

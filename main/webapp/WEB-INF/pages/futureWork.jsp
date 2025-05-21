@@ -7,12 +7,15 @@
 </head>
 <body>
 
-    <div class="main-wrapper">
-<jsp:include page="header.jsp" />
-        <!-- Hero Image Section -->
-        <div class="hero-container">
-            <img src="${pageContext.request.contextPath}/resources/images/system/hero-image.jpeg alt="SneakSphere Hero Image">
-        </div>
+    <!-- Static Header -->
+		<header class="static-header">
+		    <jsp:include page="header.jsp" />
+		</header>
+		
+		<!-- Hero Image -->
+		<div class="hero-container">
+		    <img src="${pageContext.request.contextPath}/resources/images/system/hero-image.jpeg" alt="Hero Image">
+		</div>
 
         <!-- Launch Message -->
         <section class="launch-text">
@@ -20,7 +23,5 @@
             <p>AVAILABLE SOON..</p>
         </section>
 
-    </div>
-    <jsp:include page="footer.jsp" />
-</body>
+</body> 
 </html>

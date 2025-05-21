@@ -1,6 +1,6 @@
 @charset "UTF-8";
 /* Reset and base styles */
-* {
+* ⁠{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -12,6 +12,55 @@ body {
     line-height: 1.6;
     background-color: #fff;
 }
+
+/* Message Popup Styles */
+.message-popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.message-content {
+    background: white;
+    padding: 30px;
+    border-radius: 8px;
+    text-align: center;
+    width: 300px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.message-text {
+    display: block;
+    margin-bottom: 20px;
+    font-size: 18px;
+    color: #333;
+}
+
+.message-ok-btn {
+    margin: 0 auto;
+    padding: 8px 25px;
+    cursor: pointer;
+    background-color: #000;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.message-ok-btn:hover {
+    background-color: #333;
+}
+
+
+
 
 
 
@@ -40,8 +89,8 @@ body {
 }
 
 .shoe-img {
-    width: 100%;
-    height: auto;
+    width: 700px;
+    height: 700px;
     object-fit: contain;
     border-radius: 8px;
     background-color: #F7F7F7;
@@ -147,9 +196,7 @@ body {
     object-fit: cover;
 }
 
-.color-option:hover {
-    border-color: #000;
-}
+
 
 .color-option.selected {
     border-color: #000;
@@ -188,14 +235,21 @@ body {
     text-align: center;
 }
 
-.size-option:hover {
-    border-color: #999;
-}
+
 
 .size-option.selected {
     background-color: #000;
     color: #fff;
     border-color: #000;
+}
+
+/* Button Group Styles */
+.button-group {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 30px;
+    width: 100%;
 }
 
 .add-to-cart {
@@ -205,27 +259,70 @@ body {
     color: #fff;
     border: none;
     border-radius: 8px;
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 500;
     cursor: pointer;
-    transition: background-color 0.3s;
-    margin-top: 20px;
+    transition: all 0.3s;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 20px;
+    gap: 10px;
 }
 
-.cart-icon-img {
+.buy-now {
+    width: 100%;
+    padding: 16px;
+    background-color: #fff;
+    color: #000;
+    border: 2px solid #000;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+
+
+.cart-icon {
     width: 20px;
     height: 20px;
-    filter: brightness(0) invert(1); /* Makes the icon white */
+    filter: brightness(0) invert(1);
 }
 
-.add-to-cart:hover {
-    background-color: #333;
+/* Size Options Styling */
+.size-options {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
 
+.size-row {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.size-option {
+    padding: 10px 15px;
+    border: 1px solid #ddd;
+    background: none;
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.2s;
+    min-width: 50px;
+    text-align: center;
+    color: #333;
+}
+
+
+
+.size-option.selected {
+    background-color: #000;
+    color: #fff;
+    border-color: #000;
+}
 /* Trending Products */
 .trending-products {
     border-top: 2px solid black;
@@ -249,9 +346,6 @@ body {
     -ms-overflow-style: none;
 }
 
-.trending-wrapper::-webkit-scrollbar {
-    display: none;
-}
 
 .trending-track {
     display: flex;
@@ -263,9 +357,6 @@ body {
     cursor: grab;
 }
 
-.trending-track:active {
-    cursor: grabbing;
-}
 
 .trending-card {
     scroll-snap-align: start;
@@ -279,9 +370,7 @@ body {
     text-align: center;
 }
 
-.trending-card:hover {
-    border-color: black;
-}
+
 
 .trending-card img {
     width: 100%;

@@ -106,19 +106,22 @@
 
   <div class="cart-total-container" style="text-align:right; margin: 20px 50px;">
     <h3>Total: <span id="overall-cart-total">Rs. 0</span></h3>
-  </div>
+</div>
 
-  <div class="checkout-btn-container">
-    <button class="checkout-btn" onclick="checkout()">CheckOut</button>
-  </div>
+<div class="checkout-btn-container">
+    <form action="<%= request.getContextPath() %>/cart" method="POST">
+        <input type="hidden" name="action" value="checkout">
+        <button class="checkout-btn" type="submit">CheckOut</button>
+    </form>
 </div>
 
 <div id="messagePopup" class="message-popup">
-  <div class="message-content">
-    <span id="messageText"></span>
-    <button onclick="closeMessage()">OK</button>
-  </div>
+    <div class="message-content">
+        <span id="messageText"></span>
+        <button onclick="closeMessage()">OK</button>
+    </div>
 </div>
+  
 
 <jsp:include page="footer.jsp" />
 
@@ -207,12 +210,31 @@
 	  return false;
 	}
 
-  function closeMessage() {
-    document.getElementById('messagePopup').style.display = 'none';
-  }
-
+ 
   // Initialize totals when page loads
   document.addEventListener('DOMContentLoaded', updateOverallTotal);
+  
+  window.addEventListener('DOMContentLoaded', function() {
+	    const successMessage = "${successMessage != null ? successMessage : ''}";
+	    const errorMessage = "${errorMessage != null ? errorMessage : ''}";
+
+	    if (successMessage.trim() !== "") {
+	      document.getElementById('messageText').textContent = successMessage;
+	      document.getElementById('messagePopup').style.display = 'flex';
+	    } else if (errorMessage.trim() !== "") {
+	      document.getElementById('messageText').textContent = errorMessage;
+	      document.getElementById('messagePopup').style.display = 'flex';
+	    }
+	  });
+
+  function closeMessage() {
+	  document.getElementById('messagePopup').style.display = 'none';
+
+	  setTimeout(function() {
+	    window.location.href = '<%= request.getContextPath() %>/viewOrderHistory';
+	  }, 300);
+	}
+
 </script>
 
 </body>

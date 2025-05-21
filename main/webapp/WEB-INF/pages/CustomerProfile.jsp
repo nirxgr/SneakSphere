@@ -17,6 +17,14 @@
 <body>
     <!-- Customer Header Include -->
     <jsp:include page="header.jsp" />
+    
+    <!-- View Order Button -->
+<div class="view-order-container" onclick="window.location.href='${pageContext.request.contextPath}/viewOrderHistory'">
+  <button class="view-order-btn">
+   <img src="https://img.icons8.com/ios-filled/50/000000/in-transit.png" alt="Truck Icon" class="truck-icon" />
+    View Order
+  </button>
+</div>
 
     <!-- Profile Section -->
     <div class="profile-container">
@@ -26,8 +34,9 @@
                 <p>Personal Information</p>
             </div>
             <div class="profile-image-section">
-                <img src="${pageContext.request.contextPath}/${user.userImageURL}" alt="Profile Picture" class="profile-image">
-                <a href="${pageContext.request.contextPath}/EditCustomerProfileController" class="edit-link"><i class="fas fa-pen"></i> Edit</a>
+                <img src="${pageContext.request.contextPath}/resources/images/user/${user.userImageURL}" alt="Profile Picture" class="profile-image">
+                <a href="${pageContext.request.contextPath}/editCustomerProfileController" class="edit-link"><i class="fas fa-pen"></i> Edit</a>
+            
             </div>
         </div>
 

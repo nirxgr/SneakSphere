@@ -22,14 +22,15 @@
   </div>
   
   <div class="profile">
-  	<a href="${pageContext.request.contextPath}/admin/profile">
-      <img src="${pageContext.request.contextPath}/resources/images/admin images/profile-admin.jpeg" alt="Profile Photo" class="profile-photo">
-      <div class="profile-info">
-          <span class="profile-name">John Doe</span>
-          <span class="profile-role">Admin</span>
-      </div>
-      </a>
-  </div>
+   <a href="${pageContext.request.contextPath}/adminProfileController">
+    <img src="${pageContext.request.contextPath}/resources/images/user/${user.userImageURL}" 
+         alt="Profile Photo" class="profile-photo">
+    </a>
+    <div class="profile-info">
+        <span class="profile-name">${user.firstName} ${user.lastName}</span>
+        <span class="profile-role">Admin</span>
+    </div>
+</div>
   
   <ul class="nav-links">
       <li>
@@ -74,12 +75,26 @@
  <div class="header">
             <h1>Order</h1>
         </div>
+        <!-- Display messages -->
+        <c:if test="${not empty successMessage}">
+        	<div style="color: green; margin-bottom: 10px;">
+		          ${successMessage}
+		          </div>
+		  </c:if>
+		  
+		  <c:if test="${not empty errorMessage}">
+		      <div style="color: red; margin-bottom: 10px;">
+		          ${errorMessage}
+		      </div>
+		  </c:if>
         
     <div class="table-container">
       <table>
         <thead>
           <tr>
             <th>ID</th>
+           <th>Customer</th>
+           <th>Sneakers</th>
             <th>Quantity</th>
             <th>Size</th>
             <th>Order Total</th>
@@ -90,7 +105,9 @@
        <tbody>
        	<c:forEach var="order" items="${orders}">
        		<tr>
-	            <td>${order.orderId}</td>
+	            <td>${order.orderID}</td>
+	           <td>${order.customerFirstName} ${order.customerLastName}</td>
+	           <td>${order.sneakerNames}</td>
 	            <td>${order.quantity}</td>
 	            <td><fmt:formatNumber value="${order.size}" type="number" minFractionDigits="0" maxFractionDigits="0" /></td>
 	            <td><fmt:formatNumber value="${order.orderTotal}" type="currency" currencySymbol="Rs. " minFractionDigits="0" maxFractionDigits="0" /></td>
@@ -104,7 +121,7 @@
 					        <option value="Cancelled" ${order.orderStatus == 'Cancelled' ? 'selected' : ''}>Cancelled</option>
 					        <option value="Returned" ${order.orderStatus == 'Returned' ? 'selected' : ''}>Returned</option>
 					    </select>
-					    <input type="hidden" name="orderId" value="${order.orderId}" />
+					    <input type="hidden" name="orderID" value="${order.orderID}" />
 					    <button type="submit">Update Status</button>
 					</form>
 

@@ -12,7 +12,7 @@ import java.sql.SQLException;
 public class Dbconfig {
 
 	// Database configuration information
-	private static final String DB_NAME = "sneaksphere";
+	private static final String DB_NAME = "SneakSphere";
 	private static final String URL = "jdbc:mysql://localhost:3306/" + DB_NAME;
 	private static final String USERNAME = "root";
 	private static final String PASSWORD = "";

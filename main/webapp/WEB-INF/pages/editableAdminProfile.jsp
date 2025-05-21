@@ -19,56 +19,52 @@
 </head>
 <body>
     <div class="dashboard-container">
-     <!-- Sidebar Navigation -->
      <div class="sidebar">
-        <div class="logo">
-            <img src="${pageContext.request.contextPath}/resources/images/system/logo.png" alt="SNE KSPHERE Logo" class="logo-image">
-        </div>
-        
-        <div class="profile">
-            <img src="${pageContext.request.contextPath}/resources/images/admin images/profile-admin.jpeg" alt="Profile Photo" class="profile-photo">
-            <div class="profile-info">
-                <span class="profile-name">${user.firstName} ${user.lastName}</span>
-                <span class="profile-role">Admin</span>
-            </div>
-        </div>
+    <div class="logo">
+        <img src="${pageContext.request.contextPath}/resources/images/system/logo.png" alt="SNE KSPHERE Logo" class="logo-image">
+    </div>
+    
+   <div class="profile">
+   <a href="${pageContext.request.contextPath}/adminProfileController">
+    <img src="${pageContext.request.contextPath}/resources/images/user/${user.userImageURL}" 
+         alt="Profile Photo" class="profile-photo">
+    </a>
+    <div class="profile-info">
+        <span class="profile-name">${user.firstName} ${user.lastName}</span>
+        <span class="profile-role">Admin</span>
+    </div>
+</div>
         
         <ul class="nav-links">
-            <li class="#">
-                <a href="#">
+            <li>
+                <a href="${pageContext.request.contextPath}/admin">
                     <img src="${pageContext.request.contextPath}/resources/images/admin images/blackdashboard-icon.svg" alt="Dashboard" class="nav-icon">
-                    <span >Dashboard</span>
+                    <span>Dashboard</span>
                 </a>
             </li>
             <li>
-                <a href="#">
+                <a href= "${pageContext.request.contextPath}/adminProduct">
                     <img src="${pageContext.request.contextPath}/resources/images/admin images/product-icon.svg" alt="Products" class="nav-icon">
                     <span>Products</span>
                 </a>
             </li>
             <li>
-                <a href="#">
+                <a href="${pageContext.request.contextPath}/adminOrder">
                     <img src="${pageContext.request.contextPath}/resources/images/admin images/order-icon.svg" alt="Orders" class="nav-icon">
                     <span>Orders</span>
                 </a>
             </li>
             <li>
-                <a href="#">
+                <a href="${pageContext.request.contextPath}/adminCustomer">
                     <img src="${pageContext.request.contextPath}/resources/images/admin images/customer-icon.svg" alt="Customers" class="nav-icon">
                     <span>Customers</span>
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <img src="${pageContext.request.contextPath}/resources/images/admin images/brand-icon.svg" alt="Brands" class="nav-icon">
-                    <span>Brands</span>
                 </a>
             </li>
         </ul>
         
         <ul class="bottom-links">
             <li>
-                <a href="#">
+                <a href = "${pageContext.request.contextPath}/logout" style="text-decoration: none; color: inherit;"> 
                     <img src="${pageContext.request.contextPath}/resources/images/admin images/logout-icon.svg" alt="LogOut" class="nav-icon">
                     <span>LogOut</span>
                 </a>
@@ -81,7 +77,7 @@
                 <div class="edit-profile-header-row">
                     <h2>Edit Profile</h2>
                     <div class="edit-profile-actions">
-                        <img src="${pageContext.request.contextPath}/resources/images/admin images/profile-admin.jpeg" alt="Profile Picture" class="edit-profile-image">
+                        <img src="${pageContext.request.contextPath}/resources/images/user/${user.userImageURL}" alt="Profile Photo" class="profile-photo">
                     </div>
                 </div>
 				<c:if test="${not empty errorMessage}">
@@ -90,7 +86,7 @@
 			    </div>
 				</c:if>
                 <!-- Profile Edit Form -->
-                <form class="profile-form" method="post" action="${pageContext.request.contextPath}/EditAdminProfileController" enctype="multipart/form-data">
+                <form class="profile-form" method="post" action="${pageContext.request.contextPath}/editAdminProfileController" enctype="multipart/form-data">
             <!-- Hidden fields -->
             <input type="hidden" name="existingImage" value="${user.userImageURL}" />
             <input type="hidden" name="userId" value="${user.userID}" />
@@ -130,13 +126,12 @@
                     </div>
 
                     <div class="form-actions">
-                        <button type="submit" class="save-btn" onclick="window.location.href='${pageContext.request.contextPath}/admin/profile'">Save</button>
-                        <button type="button" class="cancel-btn" onclick="window.location.href='${pageContext.request.contextPath}/admin/profile'">Cancel</button>
+                        <button type="submit" class="save-btn" onclick="window.location.href='${pageContext.request.contextPath}/adminProfileController'">Save</button>
+                        <button type="button" class="cancel-btn" onclick="window.location.href='${pageContext.request.contextPath}/adminProfileController'">Cancel</button>
                     </div>
                 </form>
             </div>
         </div>
     </div>
-    <jsp:include page="footer.jsp" />
 </body>
 </html>

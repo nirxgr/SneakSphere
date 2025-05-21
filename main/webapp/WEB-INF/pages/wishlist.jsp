@@ -32,81 +32,9 @@ href="${pageContext.request.contextPath}/css/wishlist.css" />
 </head>
 <body>
 
-<!-- Header remains exactly the same -->
-<header class="header">
-        <div class="header-container">
-            <!-- Logo -->
-            <div class="logo-container">
-               <a href ="${pageContext.request.contextPath}/home"> <img src="${pageContext.request.contextPath}/resources/images/system/logo.png" alt="SNEAKSPHERE Logo" class="logo"></a>
-            </div>
-
-            <!-- Search Bar -->
-            <div class="search-container">
-                <input type="text" placeholder="Search" class="search-bar">
-                <button class="search-button">
-                    <img src="${pageContext.request.contextPath}/resources/images/system/search icon.svg" alt="Search Icon" width="26" height="26" />
-                </button>
-            </div>
-
-            <!-- Navigation Links -->
-                 <nav class="nav-links">
-                <a href="${pageContext.request.contextPath}/aboutus" class="nav-text">About Us</a>
-                <a href="${pageContext.request.contextPath}/contactUs" class="nav-text">Contact Us</a>
-                <span class="login-btn">
-
-                   
-                   <c:choose>
-	                   <c:when test="${not empty currentUser}">
-		                   <a href = "${pageContext.request.contextPath}/CustomerProfileController" style="text-decoration: none;"> 
-			                   <img src="${pageContext.request.contextPath}/resources/images/system/Profile.svg" alt="Profile Icon" />
-	                    	</a>
-	                    </c:when>
-                    	<c:otherwise>
-                    		<a href = "${pageContext.request.contextPath}/login" style="text-decoration: none;">
-                    			Login /
-                    		</a>
-                    	</c:otherwise>
-                	</c:choose>
-                	
-                	<c:choose>
-	                   <c:when test="${not empty currentUser}">
-		                   <a href = "${pageContext.request.contextPath}/logout" style="text-decoration: none; color: inherit;"> 
-			                  Logout
-	                    	</a>
-	                    </c:when>
-                    	<c:otherwise>
-                    		<a href = "${pageContext.request.contextPath}/signup" style="text-decoration: none; color: inherit;" >
-                    			Sign Up
-                    		</a>
-                    	</c:otherwise>
-                	</c:choose>
-                	 </span>
-                <a href ="${pageContext.request.contextPath}/wishlist" class="nav-icon" aria-label="Wishlist">
-                    <img src="${pageContext.request.contextPath}/resources/images/system/heart.svg" alt="Wishlist Icon" />
-                </a>
-                <a href ="${pageContext.request.contextPath}/cart" class="nav-icon cart-icon" aria-label="Cart">
-                   <img src="${pageContext.request.contextPath}/resources/images/system/cart.svg" alt="Cart Icon" />
-                </a>
-            </nav>
-        </div>
-    </header>
+<jsp:include page="header.jsp" />
                 	
 
-    <!-- Sub Navigation Bar -->
-    <nav class="sub-nav">
-        <div class="sub-nav-container">
-            <a href="#" class="sub-nav-link">New</a>
-            <a href="${pageContext.request.contextPath}/product" class="sub-nav-link">Men's</a>
-            <a href="#" class="sub-nav-link">Women's</a>
-            <span class="separator"></span>
-            <a href="#" class="sub-nav-link">Brands</a>
-            <a href="#" class="sub-nav-link">Releases</a>
-            <a href="#" class="sub-nav-link">New Arrivals</a>
-            <span class="separator"></span>
-            <a href="#" class="sub-nav-link">SneakSphere Rewards</a>
-        </div>
-    </nav>
-    
   <div class="cart-container">
     <h1 class="cart-title">Welcome to Wishlist</h1>
   

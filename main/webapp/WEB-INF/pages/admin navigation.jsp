@@ -1,9 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@ page import="com.sneaksphere.model.UserModel" %>
-<%
-    UserModel user = (UserModel) request.getAttribute("user");
-%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,20 +12,21 @@ href="${pageContext.request.contextPath}/css/admin navigation.css" />
 </head>
 <body>
 <!-- Sidebar Navigation -->
-    <div class="sidebar">
-        <div class="logo">
-            <img src="${pageContext.request.contextPath}/resources/images/system/logo.png" alt="SNE KSPHERE Logo" class="logo-image">
-        </div>
-        
-        <div class="profile">
-        <a href="${pageContext.request.contextPath}/admin/profile">
-            <img src="${pageContext.request.contextPath}/resources/images/admin images/profile-admin.jpeg" alt="Profile Photo" class="profile-photo">
-            <div class="profile-info">
-                <span class="profile-name">${user != null ? user.firstName : ''} ${user != null ? user.lastName : ''} </span>
-                <span class="profile-role">Admin</span>
-            </div>
-            </a>
-        </div>
+<div class="sidebar">
+    <div class="logo">
+        <img src="${pageContext.request.contextPath}/resources/images/system/logo.png" alt="SNE KSPHERE Logo" class="logo-image">
+    </div>
+    
+   <div class="profile">
+   <a href="${pageContext.request.contextPath}/adminProfileController">
+    <img src="${pageContext.request.contextPath}/resources/images/user/${user.userImageURL}" 
+         alt="Profile Photo" class="profile-photo">
+    </a>
+    <div class="profile-info">
+        <span class="profile-name">${user.firstName} ${user.lastName}</span>
+        <span class="profile-role">Admin</span>
+    </div>
+</div>
         
         <ul class="nav-links">
             <li class="active">

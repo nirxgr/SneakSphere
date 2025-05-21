@@ -31,8 +31,8 @@
           <!-- LOGIN FORM START -->
           <form action="${pageContext.request.contextPath}/login" method="post">
             <p>Log In</p>
-            <input type="email" name="username" placeholder="Email *" required />
-            <input type="password" name="password" placeholder="Password *" required />
+            <input type="email" name="username" placeholder="Email *"  />
+            <input type="password" name="password" placeholder="Password *"  />
             <div class="forgot">Forgot Password?</div>
             <button type="submit">Log In</button>
             <p class="terms">

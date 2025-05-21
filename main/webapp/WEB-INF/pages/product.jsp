@@ -16,6 +16,8 @@
     // need to add data in attribute to select it in JSP code using JSTL core tag
     pageContext.setAttribute("currentUser", currentUser);
 %>
+<!-- THis sets the contexpath variable in the jstl scope, which is used later for dynamic linking reources like css file, image etc
+ -->
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html lang="en">
@@ -73,7 +75,7 @@
     <section class="product-listing">
         <div class="container">
             <div class="breadcrumb">
-                <a href="#">Home</a> > <a href="#">Men's Shoes</a>
+                <a href="#">Home</a> > <a href="#">Shoes</a>
             </div>
 
             <div class="page-header-container">
@@ -82,15 +84,17 @@
                    <div class="results-count">Showing ${resultsCount} results</div>
                 </div>
 
-                <div class="sorting-options">
-                    <select class="sort-dropdown">
-                        <option value="featured">Featured</option>
-                        <option value="price-low">Price (Low to High)</option>
-                        <option value="price-high">Price (High to Low)</option>
-                        <option value="alpha-az">Ascending(A to Z)</option>
-                        <option value="brand-az">Descending (Z to A)</option>
-                    </select>
-                </div>
+               <div class="sorting-options">
+    <form id="sortForm" method="get">
+        <select class="sort-dropdown" name="sort" onchange="document.getElementById('sortForm').submit()">
+            <option value="featured" ${param.sort == 'featured' ? 'selected' : ''}>Featured</option>
+            <option value="price-low" ${param.sort == 'price-low' ? 'selected' : ''}>Price (Low to High)</option>
+            <option value="price-high" ${param.sort == 'price-high' ? 'selected' : ''}>Price (High to Low)</option>
+            <option value="alpha-az" ${param.sort == 'alpha-az' ? 'selected' : ''}>Ascending (A to Z)</option>
+            <option value="brand-az" ${param.sort == 'brand-az' ? 'selected' : ''}>Brand Names (A to Z)</option>
+        </select>
+    </form>
+</div>
             </div>
             <div class="filter-section">
                 <div class="main-filer">
@@ -199,7 +203,7 @@
 			        </c:otherwise>
 			    </c:choose>
 						    <a href="${contextPath}/individualProductPage?id=${product.sneakerID}">
-						        <img src="${contextPath}/resources/images/sneakers/${product.imageUrl}" alt="${product.sneakerName}">           
+						        <img src="${pageContext.request.contextPath}/resources/images/sneakers/${product.imageUrl}" alt="${product.sneakerName}">           
 						    </a>
 						</div>
 						                            <div class="product-info">

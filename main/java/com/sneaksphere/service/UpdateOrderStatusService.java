@@ -7,6 +7,14 @@ import com.sneaksphere.config.Dbconfig;
 
 public class UpdateOrderStatusService {
 
+    /**
+     * Updates the status of an order in the database.
+     * 
+     * @para orderId The ID of the order to update.
+     * @para newStatus The new status value to set for the order.
+     * @return true if the order status was successfully updated (at least one row affected),
+     *         false if no rows were updated or if an error occurred.
+     */
     public boolean updateOrderStatus(int orderId, String newStatus) {
         String query = "UPDATE `order` SET OrderStatus = ? WHERE OrderID = ?";
 

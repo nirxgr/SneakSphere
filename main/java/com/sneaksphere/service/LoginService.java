@@ -39,13 +39,13 @@ public class LoginService {
      * @return true if the user credentials are valid, false otherwise;
      *         null if a connection error occurs
      */
-    public Boolean loginUser(UserModel userModel) {
+    public String loginUser(UserModel userModel) {
         if (isConnectionError) {
             System.out.println("Connection Error!");
             return null;
         }
 
-        String query = "SELECT UserEmail, UserPassword FROM User WHERE UserEmail = ?";
+        String query = "SELECT UserEmail, UserPassword, Role FROM User WHERE UserEmail = ?";
         try (PreparedStatement stmt = dbConn.prepareStatement(query)) {
             stmt.setString(1, userModel.getEmail());
             ResultSet result = stmt.executeQuery();
@@ -58,7 +58,7 @@ public class LoginService {
             return null;
         }
 
-        return false;
+        return null;
     }
     
 
@@ -70,16 +70,19 @@ public class LoginService {
      * @return true if the passwords match, false otherwise
      * @throws SQLException if a database access error occurs
      */
-    private boolean validatePassword(ResultSet result, UserModel userModel) throws SQLException {
+    private String validatePassword(ResultSet result, UserModel userModel) throws SQLException {
         String dbUsername = result.getString("UserEmail");
         String encryptedPassword = result.getString("UserPassword");
+        String role = result.getString("Role");  // Get the role (admin or customer)
 
-        // Decrypt the stored password using the email (used as the salt key)
         String decryptedPassword = PasswordUtil.decrypt(encryptedPassword, dbUsername);
 
-        return dbUsername.equals(userModel.getEmail())
-                && decryptedPassword != null
-                && decryptedPassword.equals(userModel.getPassword());
+        if (dbUsername.equals(userModel.getEmail()) && decryptedPassword != null && decryptedPassword.equalsIgnoreCase(userModel.getPassword())) {
+            return role;  // Return role
+        }
+
+        return null; // Incorrect credentials
+        
     }
 
 }

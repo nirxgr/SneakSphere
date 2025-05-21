@@ -10,6 +10,10 @@ import java.util.List;
 public class GetCustomerService {
     private Connection dbConn;
 
+    /**
+     * @para None
+     * Constructor initializes database connection using Dbconfig class.
+     */
     public GetCustomerService() {
         try {
             dbConn = Dbconfig.getDbConnection();
@@ -18,6 +22,12 @@ public class GetCustomerService {
         }
     }
 
+    /**
+     * @para None
+     * Retrieves a list of all users with the role 'Customer' from the database.
+     *
+     * @return List<UserModel> - A list of UserModel objects representing customers.
+     */
     public List<UserModel> getAllCustomers() {
         List<UserModel> customers = new ArrayList<>();
         String query = "SELECT UserID, UserFirstName, UserLastName, UserEmail, UserPhone, UserAddress FROM user WHERE Role = 'Customer'";
@@ -33,7 +43,7 @@ public class GetCustomerService {
                 user.setPhone(rs.getString("UserPhone"));
                 user.setAddress(rs.getString("UserAddress"));
                 customers.add(user);
-                
+
             }
         } catch (SQLException e) {
             System.out.println("Error fetching customers: " + e.getMessage());

@@ -26,21 +26,38 @@ public class PasswordUtil {
     private static final int SALT_LENGTH_BYTE = 16;
     private static final Charset UTF_8 = StandardCharsets.UTF_8;
 
-   
+    /**
+     * Generates a random nonce (number used once) of specified number of bytes.
+     * 
+     * @para numBytes the length of the nonce in bytes
+     * @return a byte array containing the random nonce
+     */
     public static byte[] getRandomNonce(int numBytes) {
         byte[] nonce = new byte[numBytes];
         new SecureRandom().nextBytes(nonce);
         return nonce;
     }
 
-    // AES secret key
+    /**
+     * Generates a new AES secret key with the specified key size.
+     * 
+     * @para keysize the size of the AES key in bits (e.g., 128, 192, 256)
+     * @return a SecretKey object representing the AES key
+     * @throws NoSuchAlgorithmException if AES algorithm is not available
+     */
     public static SecretKey getAESKey(int keysize) throws NoSuchAlgorithmException {
         KeyGenerator keyGen = KeyGenerator.getInstance("AES");
         keyGen.init(keysize, SecureRandom.getInstanceStrong());
         return keyGen.generateKey();
     }
 
-    // Password derived AES 256 bits secret key
+    /**
+     * Derives a 256-bit AES secret key from a password and salt using PBKDF2 with HMAC SHA-256.
+     * 
+     * @para password the password as a char array
+     * @para salt the salt as a byte array
+     * @return the derived SecretKey, or null if an error occurs
+     */
     public static SecretKey getAESKeyFromPassword(char[] password, byte[] salt){
            	try {
            		SecretKeyFactory factory = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA256");
@@ -57,7 +74,14 @@ public class PasswordUtil {
        		return null;
     }
 
-    // return a base64 encoded AES encrypted text
+    /**
+     * Encrypts the given password string using AES-GCM with a key derived from the employee_id.
+     * The result is a base64 encoded string containing IV, salt, and ciphertext.
+     * 
+     * @para employee_id the identifier used as password to derive AES key
+     * @para password the plain text password to encrypt
+     * @return the base64 encoded encrypted string, or null if encryption fails
+     */
     public static String encrypt(String employee_id, String password){
     	try {
 		    // 16 bytes salt
@@ -91,7 +115,14 @@ public class PasswordUtil {
 
     }
 
-    
+    /**
+     * Decrypts a base64 encoded encrypted password string using AES-GCM with a key derived from the username.
+     * The encrypted string must contain IV, salt, and ciphertext concatenated and base64 encoded.
+     * 
+     * @para encryptedPassword the base64 encoded encrypted password string
+     * @para username the identifier used to derive AES key for decryption
+     * @return the decrypted plain text password, or null if decryption fails
+     */
     public static String decrypt(String encryptedPassword, String username) {
 		try {
 			byte[] decode = Base64.getDecoder().decode(encryptedPassword.getBytes(UTF_8));

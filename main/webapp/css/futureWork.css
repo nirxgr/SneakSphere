@@ -1,36 +1,53 @@
 @charset "UTF-8";
+
+/* Base Styles */
 body {
     margin: 0;
     font-family: Arial, sans-serif;
     background-color: #ffffff;
-    display: flex;
-    justify-content: center;
 }
 
-.main-wrapper {
-    max-width: 900px;
+/* Fixed Header Styling */
+.static-header {
+    position: fixed;
+    top: 0;
+    left: 0;
     width: 100%;
-    text-align: center;
+    z-index: 1000;
+    background-color: white;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
+/* Space below header to avoid overlap */
+.hero-container {
+    margin-top: 80px; /* This should match or exceed your header's height */
+}
+
+/* Make Image Full Width */
 .hero-container img {
     width: 100%;
     height: auto;
     display: block;
 }
 
-.launch-text {
-    margin-top: 30px;
-    padding: 0 20px;
+/* Centered Content Below Image */
+.main-wrapper {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
 }
 
 .launch-text h1 {
     font-size: 28px;
     font-weight: bold;
     margin-bottom: 10px;
+    text-align: center;  
 }
 
 .launch-text p {
     font-size: 16px;
     color: #555;
+    text-align: center;  
 }
+

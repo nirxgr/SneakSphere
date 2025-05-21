@@ -5,13 +5,7 @@
 <%@ page import="jakarta.servlet.http.HttpSession" %>
 <%@ page import="jakarta.servlet.http.HttpServletRequest" %>
 
-<%
-    // Initialize necessary objects and variables
-    HttpSession userSession = request.getSession(false);
-    String currentUser = (String) (userSession != null ? userSession.getAttribute("username") : null);
-    // need to add data in attribute to select it in JSP code using JSTL core tag
-    pageContext.setAttribute("currentUser", currentUser);
-%>
+
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html lang="en">
@@ -69,12 +63,12 @@
     <section class="product-listing">
         <div class="container">
             <div class="breadcrumb">
-                <a href="#">Home</a> > <a href="#">Men's Shoes</a>
+                <a href="#">Home</a> > <a href="#">Womens Shoes</a>
             </div>
 
             <div class="page-header-container">
                 <div class="page-header">
-                    <h1>Men's Shoes</h1>
+                    <h1>Shoes</h1>
                    <div class="results-count">Showing ${resultsCount} results</div>
                 </div>
                <div class="sorting-options">
@@ -177,11 +171,27 @@
                 <c:forEach var="product" items="${products}">
                     <div class="product-card">
                             <div class="product-image">
-                            <button class="wishlist-btn">
-                                    <img src="${pageContext.request.contextPath}/resources/images/Product Page Image/heart.svg" alt="Add to wishlist" class="wishlist-icon">
-                                </button>
+                           <c:choose>
+			        		<c:when test="${not empty currentUser}">
+			            	<form action="${contextPath}/wishlist" method="post">
+						    	<input type="hidden" name="sneakerID" value="${product.sneakerID}"/>
+						    	<input type="hidden" name="action" value="add">
+						    	<button type="submit" class="wishlist-btn">
+						        <img src="${contextPath}/resources/images/Product Page Image/heart.svg" 
+						             alt="Add to wishlist" class="wishlist-icon">
+						    </button>
+							</form>
+			        		</c:when>
+			        		<c:otherwise>
+			           		 <a href="${contextPath}/login?redirect=product" class="wishlist-btn">
+			                <img src="${contextPath}/resources/images/Product Page Image/heart.svg" 
+			                     alt="Wishlist" class="wishlist-icon">
+			            	</a>
+			        		</c:otherwise>
+			    			</c:choose>
                                   <a href="${pageContext.request.contextPath}/individualProductPage?id=${product.sneakerID}">
-                                <img src="${pageContext.request.contextPath}/resources/images/sneakers/${product.imageUrl}" alt="${product.sneakerName}">           
+                                <img src="${pageContext.request.contextPath}/resources/images/sneakers/${product.imageUrl}" alt="${product.sneakerName}">     
+                                </a>      
                             </div>
                             <div class="product-info">
                                 <h3 class="product-name">${product.sneakerName}</h3>
@@ -197,11 +207,17 @@
                                 </div>
                                 <p class="product-category">${product.category}</p>
                                 <p class="product-price">Rs. ${product.price}</p>
-                                 </a>
-                                <button class="add-to-cart-btn">
-                                    <img src="${pageContext.request.contextPath}/resources/images/Product Page Image/add to cart.svg" alt="Add to cart" class="cart-icon">
-                                    Add to Cart
-                                </button>
+                                <form action="${contextPath}/cart" method="post" style="display:inline;">
+										    <input type="hidden" name="sneakerID" value="${product.sneakerID}" />
+										    <input type="hidden" name="price" value="${product.price}" />
+										    <input type="hidden" name="quantity" value="1" />
+										    <input type="hidden" name="action" value="add" />
+										
+										    <button type="submit" class="add-to-cart-btn">
+										        <img src="${contextPath}/resources/images/Product Page Image/add to cart.svg" alt="Add to cart" class="cart-icon" />
+										        Add to Cart
+										    </button>
+										</form>
                             </div>
                     </div>
                 </c:forEach>
