@@ -40,5 +40,4 @@ Sneaksphere is a dynamic, full-featured e-commerce platform built using Java (JS
 -  Admin dashboard for backend management
 -  Scalable MVC architecture
 
-##  Getting Started
 
